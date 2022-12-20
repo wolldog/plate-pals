@@ -1,4 +1,4 @@
-# Pal Plates
+# Plate Pal-Project
 
 
 #Made by Mohammad Nabiei, Lydia Wallis, Sundarshan Singh, Jacksson Kent
