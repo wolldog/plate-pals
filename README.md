@@ -192,7 +192,9 @@ SOFTWARE.
 ## User Story
 
 ```md
-AS AN ...
-I WANT ...
-SO THAT ...
+AS A food enthusiast with passion to host people
+I WANT choose a good variety of recipes for foods and drinks 
+SO THAT I can impress my guests with good food and drinks
 ```
+
+
