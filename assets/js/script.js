@@ -1,6 +1,6 @@
 const apiUrl = `https://www.themealdb.com/api/json/v2/9973533/${search}`
 
-let search = ``
+let search = `randomselection.php`
 
 fetch(apiUrl).then(function (response) {
     if (response.ok) {
