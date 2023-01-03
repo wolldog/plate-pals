@@ -1,7 +1,7 @@
 # Plate Pal-Project
 
 
-#Made by Mohammad Nabiei, Lydia Wallis, Sudarshan Singh, Jacksson Kent
+#Made by Mohammad Nabiei, Lydia Wallis, Sudarshan Singh, Jackson Kent
 #Date: 18/12/2022
 
 ## Description
