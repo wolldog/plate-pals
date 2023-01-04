@@ -1,5 +1,13 @@
 
+var foodbyOriginBtn = document.querySelector()
+
 let search = `randomselection.php`
+
+let filterByIngredient = 'filter.php?i=chicken_breast'
+
+let filterByCategory = 'filter.php?c=Seafood'
+
+let filterByArea = 'filter.php?a=Canadian'
 
 const apiUrl = `https://www.themealdb.com/api/json/v2/9973533/${search}`
 
@@ -43,4 +51,11 @@ fetch(apiUrl).then(function (response) {
       cardDivEl.appendChild(cardBodyDivEl)
       cardBodyDivEl.appendChild(cardTitleEl)
     }
+  }
+
+  // Add click listeners for the food recipe and cocktail recipe refinement options
+
+  // Create a function that will dynamically refine the list of dispalyed based on the 
+  function refineByOrigin(origin) {
+    console.log(origin);
   }
