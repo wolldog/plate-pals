@@ -9,7 +9,7 @@ let filterByCategory = 'filter.php?c=Seafood'
 
 let filterByArea = 'filter.php?a=Canadian'
 
-const apiUrl = `https://www.themealdb.com/api/json/v2/9973533/${search}`
+var apiUrl = `https://www.themealdb.com/api/json/v2/9973533/${search}`
 
 
 
@@ -54,8 +54,30 @@ fetch(apiUrl).then(function (response) {
   }
 
   // Add click listeners for the food recipe and cocktail recipe refinement options
+  foodbyOriginBtn.addEventListener ("click", refineByOrigin );
 
-  // Create a function that will dynamically refine the list of dispalyed based on the 
-  function refineByOrigin(origin) {
-    console.log(origin);
+
+
+  // Create a function that will dynamically refine the list of dispalyed based on the origin/area
+  function refineByOrigin(recipies) {
+    apiUrl = `https://www.themealdb.com/api/json/v2/9973533/${filterByArea}`
+
+
+
+    fetch(apiUrl).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (data) {
+            displayMeals(data)
+            console.log("data after event click:");
+            console.log(data);
+            
+          });
+        } else { 
+          alert('Error: ' + response.statusText);
+        }
+      });
+      // call display meals function
+      console.log("recepies after event click:");
+      console.log(recipies);
+      displayMeals(recipies);
   }
