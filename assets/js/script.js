@@ -2,7 +2,7 @@
 var foodbyOriginBtn = document.querySelector('#origin-filter');
 var foodbyIngredientBtn = document.querySelector('#ingredient-filter');
 var foodbyCategoryBtn = document.querySelector('#category-filter');
-var favouritesBtn = document.querySelector('#favorites-btn');
+var favouritesBtn = document.querySelector('#favourites-btn');
 
 let search = `randomselection.php`
 
@@ -65,7 +65,7 @@ fetch(apiUrl).then(function (response) {
   foodbyOriginBtn.addEventListener ("click", refineByOrigin );
   foodbyIngredientBtn.addEventListener ("click", refineByIngredients );
   foodbyCategoryBtn.addEventListener ("click", refineByCategory  );
-  favouritesBtn.addEventListener ("click", favouritesBtn);
+  favouritesBtn.addEventListener ("click", displayFavorites);
 
 
 
@@ -151,6 +151,6 @@ fetch(apiUrl).then(function (response) {
   }
 
   // This function will display the list of favourited recipes stored in local storage
-  function displayFavorites (recipies) {
- 
+  function displayFavorites () {
+      console.log("Favorites was clicked");
   }
