@@ -1,5 +1,5 @@
 
-var foodbyOriginBtn = document.querySelector()
+var foodbyOriginBtn = document.querySelector('#origin-filter')
 
 let search = `randomselection.php`
 
