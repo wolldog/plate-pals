@@ -45,7 +45,9 @@ fetch(apiUrl).then(function (response) {
       cardBodyDivEl.setAttribute('class', 'card-body');
       cardTitleEl.setAttribute('class', 'card-title');
       cardStar.setAttribute('class', 'btn-primary')
-      
+      // Wanna add an id to star button for later use
+      cardStar.setAttribute('id', "favouriteBtn");
+
       cardImg.src = recipies.meals[i].strMealThumb;
       cardTitleEl.textContent = recipies.meals[i].strMeal;
       cardStar.textContent = "ADD TO FAVOURITES ❤️";
