@@ -2,7 +2,7 @@
 var foodbyOriginBtn = document.querySelector('#origin-filter');
 var foodbyIngredientBtn = document.querySelector('#ingredient-filter');
 var foodbyCategoryBtn = document.querySelector('#category-filter');
-
+var favouritesBtn = document.querySelector('#favorites-btn');
 
 let search = `randomselection.php`
 
@@ -39,27 +39,31 @@ fetch(apiUrl).then(function (response) {
       var colDivEl = document.createElement('div');
       var cardDivEl = document.createElement('div');
       var cardImg = document.createElement('img');
-      
+      var cardStar = document.createElement('h5');
       colDivEl.setAttribute('class', 'col');
       cardDivEl.setAttribute('class', 'card');
       cardBodyDivEl.setAttribute('class', 'card-body');
       cardTitleEl.setAttribute('class', 'card-title');
+      cardStar.setAttribute('class', 'btn-primary')
       
       cardImg.src = recipies.meals[i].strMealThumb;
       cardTitleEl.textContent = recipies.meals[i].strMeal;
+      cardStar.textContent = "ADD TO FAVOURITES ❤️";
       
       cardContainer.appendChild(colDivEl)
       colDivEl.appendChild(cardDivEl)
       cardDivEl.appendChild(cardImg)
       cardDivEl.appendChild(cardBodyDivEl)
+      colDivEl.appendChild(cardStar);
       cardBodyDivEl.appendChild(cardTitleEl)
     }
   }
 
-  // Add click listeners for the food recipe and cocktail recipe refinement options
+  // Add click listeners for the nav bar  refinement options and favourite button
   foodbyOriginBtn.addEventListener ("click", refineByOrigin );
   foodbyIngredientBtn.addEventListener ("click", refineByIngredients );
   foodbyCategoryBtn.addEventListener ("click", refineByCategory  );
+  favouritesBtn.addEventListener ("click", favouritesBtn);
 
 
 
@@ -67,7 +71,7 @@ fetch(apiUrl).then(function (response) {
   function refineByOrigin(recipies) {
     // Here I wanna remove the card container entirely from the page when the function is called
     // I get errors here so I commented out:
-    
+
     // cardContainer.style.display = "none";
     // cardBodyDivEl.style.display = "none";
     // cardTitleEl.style.display = "none";
@@ -142,4 +146,9 @@ fetch(apiUrl).then(function (response) {
       console.log("recepies after event click:");
       console.log(recipies);
       displayMeals(recipies);
+  }
+
+  // This function will display the list of favourited recipes stored in local storage
+  function displayFavorites (recipies) {
+ 
   }
