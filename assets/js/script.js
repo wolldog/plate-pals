@@ -63,11 +63,11 @@ fetch(foodApiUrl).then(function (response) {
   }
 });
 
-function displayDrinks(recipies) {
+function displayDrinks(instructions) {
 
   clearDiv();
 
-  console.log(recipies)
+  console.log(instructions)
   
   for(var i = 0; i < 8; i++){
     var cardBodyDivEl = document.createElement('div');
@@ -82,8 +82,8 @@ function displayDrinks(recipies) {
     cardTitleEl.setAttribute('class', 'card-title');
 
 
-    cardImg.src = recipies.drinks[i].strDrinkThumb;
-    cardTitleEl.textContent = recipies.drinks[i].strDrink;
+    cardImg.src = instructions.drinks[i].strDrinkThumb;
+    cardTitleEl.textContent = instructions.drinks[i].strDrink;
 
     
     cardContainer.appendChild(colDivEl)
@@ -139,16 +139,6 @@ dessertCatBtn.addEventListener ("click", onlyDesserts);
 
 // Create a function that will dynamically refine the list of dispalyed based on the origin/area
 function onlyCanadianFood(recipies) {
-  // Here I wanna remove the card container entirely from the page when the function is called
-  // I get errors here so I commented out:
-
-  // cardContainer.style.display = "none";
-  // cardBodyDivEl.style.display = "none";
-  // cardTitleEl.style.display = "none";
-  // colDivEl.style.display = "none";
-  // cardDivEl.style.display = "none";
-  // cardImg.style.display = "none";
-
 
   foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Canadian}`
 
@@ -324,3 +314,10 @@ function clearDiv () {
   // cardContainer.style.display = "none";
 
 }
+
+function init() {
+  displayDrinks();
+  displayMeals();
+}
+
+init();
