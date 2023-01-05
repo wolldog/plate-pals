@@ -12,6 +12,8 @@ var cocktailBtn = document.querySelector('#cocktail-filter');
 var ordinaryDrinkBtn = document.querySelector('#ordinary-filter');
 var favouritesBtn = document.querySelector('#favourites-btn');
 
+var cardContainer = document.getElementById('card-container')
+
 
 let Random = `randomselection.php`
 // Country
@@ -33,7 +35,21 @@ let cocktailGlass = 'filter.php?g=Cocktail_glass'
 let champagneFlute = 'filter.php?g=Champagne_flute'
 // API URL's
 var foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Random}`
-// var cocktailApiUrl = 
+var cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/random.php`
+
+
+fetch(cocktailApiUrl).then(function (response) {
+  if (response.ok) {
+    response.json().then(function (data) {
+      displayMeals(data)
+      console.log("Drinks API");
+      console.log(data);
+        
+    });
+  } else { 
+    alert('Error: ' + response.statusText);
+  }
+});
 
 
 fetch(foodApiUrl).then(function (response) {
@@ -47,10 +63,10 @@ fetch(foodApiUrl).then(function (response) {
   }
 });
 
-function displayMeals(recipies) {
+function displayDrinks(recipies) {
 
-  var cardContainer = document.getElementById('card-container')
-  
+  clearDiv();
+
   console.log(recipies)
   
   for(var i = 0; i < 8; i++){
@@ -59,7 +75,39 @@ function displayMeals(recipies) {
     var colDivEl = document.createElement('div');
     var cardDivEl = document.createElement('div');
     var cardImg = document.createElement('img');
-    var cardStar = document.createElement('h5');
+
+    colDivEl.setAttribute('class', 'col');
+    cardDivEl.setAttribute('class', 'card');
+    cardBodyDivEl.setAttribute('class', 'card-body');
+    cardTitleEl.setAttribute('class', 'card-title');
+
+
+    cardImg.src = recipies.drinks[i].strDrinkThumb;
+    cardTitleEl.textContent = recipies.drinks[i].strDrink;
+
+    
+    cardContainer.appendChild(colDivEl)
+    colDivEl.appendChild(cardDivEl)
+    cardDivEl.appendChild(cardImg)
+    cardDivEl.appendChild(cardBodyDivEl)
+    cardBodyDivEl.appendChild(cardTitleEl)
+
+
+  }
+}
+
+function displayMeals(recipies) {
+
+  clearDiv();
+  console.log(recipies)
+  
+  for(var i = 0; i < 8; i++){
+    var cardBodyDivEl = document.createElement('div');
+    var cardTitleEl = document.createElement('h5');
+    var colDivEl = document.createElement('div');
+    var cardDivEl = document.createElement('div');
+    var cardImg = document.createElement('img');
+
     colDivEl.setAttribute('class', 'col');
     cardDivEl.setAttribute('class', 'card');
     cardBodyDivEl.setAttribute('class', 'card-body');
@@ -76,12 +124,6 @@ function displayMeals(recipies) {
     cardDivEl.appendChild(cardBodyDivEl)
     cardBodyDivEl.appendChild(cardTitleEl)
 
-    cardContainer.style.display = "";
-    cardBodyDivEl.style.display = "";
-    cardTitleEl.style.display = "";
-    colDivEl.style.display = "";
-    cardDivEl.style.display = "";
-    cardImg.style.display = "";
   }
 }
 
@@ -273,3 +315,12 @@ function displayFavorites () {
 }
 
 // Implement the searchbar autofill feature
+
+
+
+// Clear div
+function clearDiv () {
+  cardContainer.textContent = "";
+  // cardContainer.style.display = "none";
+
+}
