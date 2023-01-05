@@ -35,7 +35,7 @@ let cocktailGlass = 'filter.php?g=Cocktail_glass'
 let champagneFlute = 'filter.php?g=Champagne_flute'
 // API URL's
 var foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Random}`
-var cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/random.php`
+var cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/randomselection.php`
 
 
 fetch(cocktailApiUrl).then(function (response) {
