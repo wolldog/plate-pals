@@ -64,76 +64,7 @@ fetch(foodApiUrl).then(function (response) {
   }
 });
 
-// Initially we want to display 4 food items and 4 drinks items
-// function init() {
-//   displayDrinksInit(instructions);
-//   displayMealsInit(recipies);
-// }
 
-// function displayMealsInit (recipies) {
-
-//   // clearDiv();
-
-//   console.log(recipies)
-  
-//   for(var i = 0; i < 4; i++){
-//     var cardBodyDivEl = document.createElement('div');
-//     var cardTitleEl = document.createElement('h5');
-//     var colDivEl = document.createElement('div');
-//     var cardDivEl = document.createElement('div');
-//     var cardImg = document.createElement('img');
-
-//     colDivEl.setAttribute('class', 'col');
-//     cardDivEl.setAttribute('class', 'card');
-//     cardBodyDivEl.setAttribute('class', 'card-body');
-//     cardTitleEl.setAttribute('class', 'card-title');
-
-
-//     cardImg.src = recipies.meals[i].strMealThumb;
-//     cardTitleEl.textContent = recipies.meals[i].strMeal;
-
-    
-//     cardContainer.appendChild(colDivEl)
-//     colDivEl.appendChild(cardDivEl)
-//     cardDivEl.appendChild(cardImg)
-//     cardDivEl.appendChild(cardBodyDivEl)
-//     cardBodyDivEl.appendChild(cardTitleEl)
-
-//   }
-// }
-
-// function displayDrinksInit (instructions) {
-
-//   // clearDiv2();
-
-//   console.log(instructions)
-  
-//   for(var j = 0; j < 4; j++){
-//     var cardBodyDivEl = document.createElement('div');
-//     var cardTitleEl = document.createElement('h5');
-//     var colDivEl = document.createElement('div');
-//     var cardDivEl = document.createElement('div');
-//     var cardImg = document.createElement('img');
-
-//     colDivEl.setAttribute('class', 'col');
-//     cardDivEl.setAttribute('class', 'card');
-//     cardBodyDivEl.setAttribute('class', 'card-body');
-//     cardTitleEl.setAttribute('class', 'card-title');
-
-
-//     cardImg.src = instructions.drinks[j].strDrinkThumb;
-//     cardTitleEl.textContent = instructions.drinks[j].strDrink;
-
-    
-//     cardContainer.appendChild(colDivEl)
-//     colDivEl.appendChild(cardDivEl)
-//     cardDivEl.appendChild(cardImg)
-//     cardDivEl.appendChild(cardBodyDivEl)
-//     cardBodyDivEl.appendChild(cardTitleEl)
-
-
-//   }
-// }
 
 function displayDrinks(instructions) {
 
@@ -478,4 +409,3 @@ function clearDiv () {
 function clearDiv2 () {
   cardContainer2.textContent = "";
 }
-// init();
