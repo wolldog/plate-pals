@@ -13,6 +13,7 @@ var ordinaryDrinkBtn = document.querySelector('#ordinary-filter');
 var favouritesBtn = document.querySelector('#favourites-btn');
 
 var cardContainer = document.getElementById('card-container')
+var cardContainer2 = document.getElementById('card-container-2')
 
 
 let Random = `randomselection.php`
@@ -35,13 +36,13 @@ let cocktailGlass = 'filter.php?g=Cocktail_glass'
 let champagneFlute = 'filter.php?g=Champagne_flute'
 // API URL's
 var foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Random}`
-var cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/randomselection.php`
+var cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/${Random}`
 
 
 fetch(cocktailApiUrl).then(function (response) {
   if (response.ok) {
     response.json().then(function (data) {
-      displayMeals(data)
+      displayDrinks(data)
       console.log("Drinks API");
       console.log(data);
         
@@ -63,13 +64,84 @@ fetch(foodApiUrl).then(function (response) {
   }
 });
 
+// Initially we want to display 4 food items and 4 drinks items
+// function init() {
+//   displayDrinksInit(instructions);
+//   displayMealsInit(recipies);
+// }
+
+// function displayMealsInit (recipies) {
+
+//   // clearDiv();
+
+//   console.log(recipies)
+  
+//   for(var i = 0; i < 4; i++){
+//     var cardBodyDivEl = document.createElement('div');
+//     var cardTitleEl = document.createElement('h5');
+//     var colDivEl = document.createElement('div');
+//     var cardDivEl = document.createElement('div');
+//     var cardImg = document.createElement('img');
+
+//     colDivEl.setAttribute('class', 'col');
+//     cardDivEl.setAttribute('class', 'card');
+//     cardBodyDivEl.setAttribute('class', 'card-body');
+//     cardTitleEl.setAttribute('class', 'card-title');
+
+
+//     cardImg.src = recipies.meals[i].strMealThumb;
+//     cardTitleEl.textContent = recipies.meals[i].strMeal;
+
+    
+//     cardContainer.appendChild(colDivEl)
+//     colDivEl.appendChild(cardDivEl)
+//     cardDivEl.appendChild(cardImg)
+//     cardDivEl.appendChild(cardBodyDivEl)
+//     cardBodyDivEl.appendChild(cardTitleEl)
+
+//   }
+// }
+
+// function displayDrinksInit (instructions) {
+
+//   // clearDiv2();
+
+//   console.log(instructions)
+  
+//   for(var j = 0; j < 4; j++){
+//     var cardBodyDivEl = document.createElement('div');
+//     var cardTitleEl = document.createElement('h5');
+//     var colDivEl = document.createElement('div');
+//     var cardDivEl = document.createElement('div');
+//     var cardImg = document.createElement('img');
+
+//     colDivEl.setAttribute('class', 'col');
+//     cardDivEl.setAttribute('class', 'card');
+//     cardBodyDivEl.setAttribute('class', 'card-body');
+//     cardTitleEl.setAttribute('class', 'card-title');
+
+
+//     cardImg.src = instructions.drinks[j].strDrinkThumb;
+//     cardTitleEl.textContent = instructions.drinks[j].strDrink;
+
+    
+//     cardContainer.appendChild(colDivEl)
+//     colDivEl.appendChild(cardDivEl)
+//     cardDivEl.appendChild(cardImg)
+//     cardDivEl.appendChild(cardBodyDivEl)
+//     cardBodyDivEl.appendChild(cardTitleEl)
+
+
+//   }
+// }
+
 function displayDrinks(instructions) {
 
-  clearDiv();
+  clearDiv2();
 
   console.log(instructions)
   
-  for(var i = 0; i < 8; i++){
+  for(var j = 0; j < 8; j++){
     var cardBodyDivEl = document.createElement('div');
     var cardTitleEl = document.createElement('h5');
     var colDivEl = document.createElement('div');
@@ -82,11 +154,11 @@ function displayDrinks(instructions) {
     cardTitleEl.setAttribute('class', 'card-title');
 
 
-    cardImg.src = instructions.drinks[i].strDrinkThumb;
-    cardTitleEl.textContent = instructions.drinks[i].strDrink;
+    cardImg.src = instructions.drinks[j].strDrinkThumb;
+    cardTitleEl.textContent = instructions.drinks[j].strDrink;
 
     
-    cardContainer.appendChild(colDivEl)
+    cardContainer2.appendChild(colDivEl)
     colDivEl.appendChild(cardDivEl)
     cardDivEl.appendChild(cardImg)
     cardDivEl.appendChild(cardBodyDivEl)
@@ -136,6 +208,14 @@ chickenCatBtn.addEventListener ("click", onlyChickenFood );
 seafoodCatBtn.addEventListener ("click", onlySeafood  );
 pastaCatBtn.addEventListener ("click", onlyPastas);
 dessertCatBtn.addEventListener ("click", onlyDesserts);
+
+alcoholicBtn.addEventListener ("click", onlyAlcohols);
+nonAlcoholicBtn.addEventListener ("click", noAlcohols);
+
+cocktailBtn.addEventListener ("click", onlyCocktails);
+ordinaryDrinkBtn.addEventListener ("click", onlyOrdinaryDrinks);
+
+
 
 // Create a function that will dynamically refine the list of dispalyed based on the origin/area
 function onlyCanadianFood(recipies) {
@@ -299,25 +379,103 @@ function onlyDesserts (recipies) {
     displayMeals(recipies);
 }
 
+function onlyAlcohols (instructions) {
+  cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/${Alcoholic}`
+
+  fetch(cocktailApiUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          displayDrinks(data)
+          console.log("data after event click:");
+          console.log(data);
+          
+        });
+      } else { 
+        alert('Error: ' + response.statusText);
+      }
+    });
+    // call display drinks function
+    console.log("Instructions after event click:");
+    console.log(instructions);
+    displayDrinks(instructions);
+}
+
+function noAlcohols (instructions) {
+  cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/${nonAlcholic}`
+
+  fetch(cocktailApiUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          displayDrinks(data)
+          console.log("data after event click:");
+          console.log(data);
+          
+        });
+      } else { 
+        alert('Error: ' + response.statusText);
+      }
+    });
+    // call display drinks function
+    console.log("Instructions after event click:");
+    console.log(instructions);
+    displayDrinks(instructions);
+}
+
+function onlyCocktails (instructions) {
+  cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/${cocktailGlass}`
+
+  fetch(cocktailApiUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          displayDrinks(data)
+          console.log("data after event click:");
+          console.log(data);
+          
+        });
+      } else { 
+        alert('Error: ' + response.statusText);
+      }
+    });
+    // call display drinks function
+    console.log("Instructions after event click:");
+    console.log(instructions);
+    displayDrinks(instructions);
+}
+
+function onlyOrdinaryDrinks (instructions) {
+  cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/${champagneFlute}`
+
+  fetch(cocktailApiUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          displayDrinks(data)
+          console.log("data after event click:");
+          console.log(data);
+          
+        });
+      } else { 
+        alert('Error: ' + response.statusText);
+      }
+    });
+    // call display drinks function
+    console.log("Instructions after event click:");
+    console.log(instructions);
+    displayDrinks(instructions);
+}
+
+
 // This function will display the list of favourited recipes stored in local storage
 function displayFavorites () {
     console.log("Favorites was clicked");
 }
 
-// Implement the searchbar autofill feature
-
-
-
-// Clear div
+// Clear div for food cards
 function clearDiv () {
   cardContainer.textContent = "";
-  // cardContainer.style.display = "none";
-
 }
 
-function init() {
-  displayDrinks();
-  displayMeals();
+// Clear div for drink cards
+function clearDiv2 () {
+  cardContainer2.textContent = "";
 }
-
-init();
+// init();
