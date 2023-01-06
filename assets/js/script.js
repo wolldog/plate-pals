@@ -119,7 +119,7 @@ function displayMeals(recipes) {
     var btnIEl = document.createElement('i');
 
     colDivEl.setAttribute('class', 'col');
-    cardDivEl.setAttribute('class', 'card');
+    cardDivEl.setAttribute('class', 'card border border-0');
     cardBodyDivEl.setAttribute('class', 'card-body');
     cardTitleEl.setAttribute('class', 'card-title');
 
