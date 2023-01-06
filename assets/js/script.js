@@ -99,10 +99,13 @@ function displayDrinks(instructions) {
   }
 }
 
-function displayMeals(recipies) {
+// 'displayMeals' creates recipe cards based on the current search value. The initial search value
+// is a random selection of 8 recipes. Each recipe card has an image, title, and favorite button.
+
+function displayMeals(recipes) {
 
   clearDiv();
-  console.log(recipies)
+  console.log(recipes)
   
   for(var i = 0; i < 8; i++){
     var cardBodyDivEl = document.createElement('div');
@@ -110,15 +113,20 @@ function displayMeals(recipies) {
     var colDivEl = document.createElement('div');
     var cardDivEl = document.createElement('div');
     var cardImg = document.createElement('img');
+    var btnEl = document.createElement('button');
+    var btnIEl = document.createElement('i');
 
     colDivEl.setAttribute('class', 'col');
     cardDivEl.setAttribute('class', 'card');
     cardBodyDivEl.setAttribute('class', 'card-body');
     cardTitleEl.setAttribute('class', 'card-title');
 
+    btnEl.setAttribute('data-value', recipes.meals[i].idMeal)
+    btnEl.addEventListener("click", addToFavs);
+    btnIEl.setAttribute("class", "bi bi-star")
 
-    cardImg.src = recipies.meals[i].strMealThumb;
-    cardTitleEl.textContent = recipies.meals[i].strMeal;
+    cardImg.src = recipes.meals[i].strMealThumb;
+    cardTitleEl.textContent = recipes.meals[i].strMeal;
 
     
     cardContainer.appendChild(colDivEl)
@@ -126,6 +134,15 @@ function displayMeals(recipies) {
     cardDivEl.appendChild(cardImg)
     cardDivEl.appendChild(cardBodyDivEl)
     cardBodyDivEl.appendChild(cardTitleEl)
+    cardBodyDivEl.appendChild(btnEl)
+    btnEl.appendChild(btnIEl)
+
+
+
+
+
+
+
 
   }
 }
@@ -149,7 +166,7 @@ ordinaryDrinkBtn.addEventListener ("click", onlyOrdinaryDrinks);
 
 
 // Create a function that will dynamically refine the list of dispalyed based on the origin/area
-function onlyCanadianFood(recipies) {
+function onlyCanadianFood(recipes) {
 
   foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Canadian}`
 
@@ -167,11 +184,11 @@ function onlyCanadianFood(recipies) {
     });
     // call display meals function
     console.log("recepies after event click:");
-    console.log(recipies);
-    displayMeals(recipies);
+    console.log(recipes);
+    displayMeals(recipes);
 }
 
-function onlyFrenchFood(recipies) {
+function onlyFrenchFood(recipes) {
 
   foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${French}`
 
@@ -189,11 +206,11 @@ function onlyFrenchFood(recipies) {
     });
     // call display meals function
     console.log("recepies after event click:");
-    console.log(recipies);
-    displayMeals(recipies);
+    console.log(recipes);
+    displayMeals(recipes);
 }
 
-function onlyItalianFood(recipies) {
+function onlyItalianFood(recipes) {
 
   foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Italian}`
 
@@ -211,11 +228,11 @@ function onlyItalianFood(recipies) {
     });
     // call display meals function
     console.log("recepies after event click:");
-    console.log(recipies);
-    displayMeals(recipies);
+    console.log(recipes);
+    displayMeals(recipes);
 }
 
-function onlyChickenFood(recipies) {
+function onlyChickenFood(recipes) {
 
   foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Chicken}`
 
@@ -233,12 +250,12 @@ function onlyChickenFood(recipies) {
     });
     // call display meals function
     console.log("recepies after event click:");
-    console.log(recipies);
-    displayMeals(recipies);
+    console.log(recipes);
+    displayMeals(recipes);
 }
 
 
-function onlySeafood (recipies) {
+function onlySeafood (recipes) {
 
   foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Seafood}`
 
@@ -258,11 +275,11 @@ function onlySeafood (recipies) {
     });
     // call display meals function
     console.log("recepies after event click:");
-    console.log(recipies);
-    displayMeals(recipies);
+    console.log(recipes);
+    displayMeals(recipes);
 }
 
-function onlyPastas (recipies) {
+function onlyPastas (recipes) {
 
   foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Pasta}`
 
@@ -282,11 +299,11 @@ function onlyPastas (recipies) {
     });
     // call display meals function
     console.log("recepies after event click:");
-    console.log(recipies);
-    displayMeals(recipies);
+    console.log(recipes);
+    displayMeals(recipes);
 }
 
-function onlyDesserts (recipies) {
+function onlyDesserts (recipes) {
 
   foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Dessert}`
 
@@ -306,8 +323,8 @@ function onlyDesserts (recipies) {
     });
     // call display meals function
     console.log("recepies after event click:");
-    console.log(recipies);
-    displayMeals(recipies);
+    console.log(recipes);
+    displayMeals(recipes);
 }
 
 function onlyAlcohols (instructions) {
