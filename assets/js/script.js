@@ -423,3 +423,47 @@ function clearDiv () {
 function clearDiv2 () {
   cardContainer2.textContent = "";
 }
+
+//When 'Add to Favorites' is clicked.....
+   
+function addToFavs(event) {
+
+  var recipeId = event.currentTarget.dataset.value;
+  
+
+  //Saved favourites are extracted from local storage
+    
+    let favorites = []
+    let myFavourites = JSON.parse(localStorage.getItem('mySavedFavs'));
+    if (myFavourites !==null){
+        favorites = myFavourites;
+    }
+
+    //The saved recipes are searched for a matching mealID
+    
+    var findMatch = favorites.indexOf(recipeId)
+    
+
+    //If a match IS NOT found, the mealID is added to favorites and the array is saved to localstorage
+    
+    if (findMatch < 0){
+      favorites.push(recipeId);
+      localStorage.setItem('mySavedFavs', JSON.stringify(favorites))
+      this.children[0].classList.remove("bi-star");
+      this.children[0].classList.add("bi-star-fill")
+      
+    }
+    //If a match IS found the mealID is removed from favorites and the array is saved to localstorage
+    
+    else {
+
+      let removeFavorite = favorites.splice(findMatch, 1)
+      localStorage.setItem('mySavedFavs', JSON.stringify(favorites))
+      console.log(removeFavorite);
+      this.children[0].classList.remove("bi-star-fill");
+      this.children[0].classList.add("bi-star")
+
+
+    }
+
+  }
