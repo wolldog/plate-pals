@@ -104,7 +104,9 @@ function displayDrinks(instructions) {
 
 function displayMeals(recipes) {
 
+  // Clear existing cards before creating new set
   clearDiv();
+  
   console.log(recipes)
   
   for(var i = 0; i < 8; i++){
@@ -121,14 +123,16 @@ function displayMeals(recipes) {
     cardBodyDivEl.setAttribute('class', 'card-body');
     cardTitleEl.setAttribute('class', 'card-title');
 
+//Set data attribute of button to the unique ID of recipe
     btnEl.setAttribute('data-value', recipes.meals[i].idMeal)
+//Add event listener and intial class of favorites button
     btnEl.addEventListener("click", addToFavs);
     btnIEl.setAttribute("class", "bi bi-star")
 
     cardImg.src = recipes.meals[i].strMealThumb;
     cardTitleEl.textContent = recipes.meals[i].strMeal;
-
-    
+ 
+    //Append all elements
     cardContainer.appendChild(colDivEl)
     colDivEl.appendChild(cardDivEl)
     cardDivEl.appendChild(cardImg)
@@ -136,13 +140,6 @@ function displayMeals(recipes) {
     cardBodyDivEl.appendChild(cardTitleEl)
     cardBodyDivEl.appendChild(btnEl)
     btnEl.appendChild(btnIEl)
-
-
-
-
-
-
-
 
   }
 }
@@ -183,7 +180,7 @@ function onlyCanadianFood(recipes) {
       }
     });
     // call display meals function
-    console.log("recepies after event click:");
+    console.log("recipes after event click:");
     console.log(recipes);
     displayMeals(recipes);
 }
@@ -205,7 +202,7 @@ function onlyFrenchFood(recipes) {
       }
     });
     // call display meals function
-    console.log("recepies after event click:");
+    console.log("recipes after event click:");
     console.log(recipes);
     displayMeals(recipes);
 }
@@ -227,7 +224,7 @@ function onlyItalianFood(recipes) {
       }
     });
     // call display meals function
-    console.log("recepies after event click:");
+    console.log("recipes after event click:");
     console.log(recipes);
     displayMeals(recipes);
 }
@@ -249,7 +246,7 @@ function onlyChickenFood(recipes) {
       }
     });
     // call display meals function
-    console.log("recepies after event click:");
+    console.log("recipes after event click:");
     console.log(recipes);
     displayMeals(recipes);
 }
@@ -274,7 +271,7 @@ function onlySeafood (recipes) {
       }
     });
     // call display meals function
-    console.log("recepies after event click:");
+    console.log("recipes after event click:");
     console.log(recipes);
     displayMeals(recipes);
 }
@@ -298,7 +295,7 @@ function onlyPastas (recipes) {
       }
     });
     // call display meals function
-    console.log("recepies after event click:");
+    console.log("recipes after event click:");
     console.log(recipes);
     displayMeals(recipes);
 }
@@ -322,7 +319,7 @@ function onlyDesserts (recipes) {
       }
     });
     // call display meals function
-    console.log("recepies after event click:");
+    console.log("recipes after event click:");
     console.log(recipes);
     displayMeals(recipes);
 }
