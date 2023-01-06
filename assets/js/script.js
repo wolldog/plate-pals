@@ -141,6 +141,18 @@ function displayMeals(recipes) {
     cardBodyDivEl.appendChild(btnEl)
     btnEl.appendChild(btnIEl)
 
+    //Add filled star to a new favorite via class 'bi-star-fill'
+    let favorites = []
+
+      let myFavourites = JSON.parse(localStorage.getItem('mySavedFavs'));
+      if (myFavourites !==null){
+          favorites = myFavourites;
+      }
+
+      if (favorites.includes(recipes.meals[i].idMeal)){
+        btnIEl.setAttribute ("class", "bi-star-fill")
+      }
+
   }
 }
 
