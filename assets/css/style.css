@@ -8,10 +8,10 @@ html {
 body {
     font-family: 'Roboto Condensed', Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
-
+/* rgb(253, 188, 188); */
 #mainPage {
     text-decoration: none;
-    color: rgb(253, 188, 188);
+    color: rgb(238, 238, 238);
     font-weight: 500;
     font-size: 50px;
     justify-content: center;
@@ -23,7 +23,7 @@ body {
 }
 
 #navbar-options {
-    color: rgb(253, 188, 188);
+    color: rgb(238, 238, 238);
     margin-left: 50px;
 }
 
@@ -33,7 +33,7 @@ body {
 }
 
 #favourites-btn {
-    color: rgb(253, 188, 188);
+    color: rgb(238, 238, 238);
     margin-left: 50px;
 }
 
