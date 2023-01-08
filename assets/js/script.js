@@ -12,8 +12,10 @@ var cocktailBtn = document.querySelector('#cocktail-filter');
 var ordinaryDrinkBtn = document.querySelector('#ordinary-filter');
 var favouritesBtn = document.querySelector('#favourites-btn');
 
-var cardContainer = document.getElementById('card-container');
-var cardContainer2 = document.getElementById('card-container-2');
+
+
+var cardContainer = document.getElementById('card-container')
+
 
 
 let Random = `randomselection.php`
@@ -68,7 +70,7 @@ fetch(foodApiUrl).then(function (response) {
 
 function displayDrinks(instructions) {
 
-  clearDiv2();
+  clearDiv();
 
   console.log(instructions)
   
@@ -89,7 +91,7 @@ function displayDrinks(instructions) {
     cardTitleEl.textContent = instructions.drinks[j].strDrink;
 
     
-    cardContainer2.appendChild(colDivEl)
+    cardContainer.appendChild(colDivEl)
     colDivEl.appendChild(cardDivEl)
     cardDivEl.appendChild(cardImg)
     cardDivEl.appendChild(cardBodyDivEl)
@@ -443,10 +445,6 @@ function clearDiv () {
   cardContainer.textContent = "";
 }
 
-// Clear div for drink cards
-function clearDiv2 () {
-  cardContainer2.textContent = "";
-}
 
 //When 'Add to Favorites' is clicked.....
    
@@ -468,7 +466,7 @@ function addToFavs(event) {
     
     let favorites = []
     let myFavourites = JSON.parse(localStorage.getItem('mySavedFavs'));
-    if (myFavourites !==null){
+    if (myFavourites !==null) {
         favorites = myFavourites;
     }
 
