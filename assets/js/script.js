@@ -451,7 +451,16 @@ function clearDiv2 () {
    
 function addToFavs(event) {
 
-  var recipeId = event.currentTarget.dataset.value;
+  var recipeId = event.currentTarget.dataset.id;
+  var recipeTitle = event.currentTarget.dataset.title;
+  var recipeImage = event.currentTarget.dataset.image;
+
+
+  var favoriteRecipes = {
+    id: recipeId,
+    title: recipeTitle,
+    image: recipeImage
+  }
 
 
   //Saved favourites are extracted from local storage
