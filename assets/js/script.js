@@ -16,6 +16,8 @@ var favouritesBtn = document.querySelector('#favourites-btn');
 
 var cardContainer = document.getElementById('card-container')
 
+var TitleBtn = document.querySelector('#mainPage');
+
 
 
 let Random = `randomselection.php`
@@ -80,12 +82,23 @@ function displayDrinks(instructions) {
     var colDivEl = document.createElement("div");
     var cardDivEl = document.createElement("div");
     var cardImg = document.createElement("img");
+    var btnEl = document.createElement("button");
+    var iconEl = document.createElement("i");
+    var linkEl = document.createElement("a")
 
     colDivEl.setAttribute("class", "col");
-    cardDivEl.setAttribute("class", "card");
+    cardDivEl.setAttribute("class", "card border border-0");
     cardBodyDivEl.setAttribute("class", "card-body");
     cardTitleEl.setAttribute("class", "card-title");
 
+    linkEl.setAttribute("data-value", instructions.drinks[j].idDrink);
+    linkEl.addEventListener("click", toMethod)
+    //Set data attribute of button to the unique ID of recipe
+    btnEl.setAttribute("data-value", instructions.drinks[j].idDrink);
+    //Add event listener and intial class of favorites button
+    btnEl.addEventListener("click", addToFavs);
+    iconEl.setAttribute("class", "bi bi-star");
+    cardImg.setAttribute("class", "img-fluid")
 
     cardImg.src = instructions.drinks[j].strDrinkThumb;
     cardTitleEl.textContent = instructions.drinks[j].strDrink;
@@ -93,9 +106,24 @@ function displayDrinks(instructions) {
     
     cardContainer.appendChild(colDivEl)
     colDivEl.appendChild(cardDivEl)
-    cardDivEl.appendChild(cardImg)
+    cardDivEl.appendChild(linkEl)
+    linkEl.appendChild(cardImg)
     cardDivEl.appendChild(cardBodyDivEl)
     cardBodyDivEl.appendChild(cardTitleEl)
+    cardBodyDivEl.appendChild(btnEl)
+    btnEl.appendChild(iconEl)
+
+        //Add filled star to a new favorite via class 'bi-star-fill'
+        let favorites = []
+
+        let myFavourites = JSON.parse(localStorage.getItem('mySavedFavs'));
+        if (myFavourites !==null){
+            favorites = myFavourites;
+        }
+  
+        if (favorites.includes(instructions.drinks[j].idDrink)){
+          iconEl.setAttribute ("class", "bi-star-fill")
+        }
 
 
   }
@@ -186,7 +214,8 @@ cocktailBtn.addEventListener ("click", onlyCocktails);
 ordinaryDrinkBtn.addEventListener ("click", onlyOrdinaryDrinks);
 favouritesBtn.addEventListener ("click", displayFavorites);
 
-
+favouritesBtn.addEventListener ("click", onlyFavourites);
+TitleBtn.addEventListener("click", toMainPage);
 
 // Create a function that will dynamically refine the list of dispalyed based on the origin/area
 function onlyCanadianFood(recipes) {
@@ -435,10 +464,6 @@ function onlyOrdinaryDrinks (instructions) {
 }
 
 
-// This function will display the list of favourited recipes stored in local storage
-function displayFavorites () {
-    console.log("Favorites was clicked");
-  }
 
 // Clear div for food cards
 function clearDiv () {
@@ -506,6 +531,7 @@ function addToFavs(event) {
     document.location = ("./assets/html/method.html")
     
   }
+
 // Function to display cards of recipes when 'Favorites' button is clicked. This differs 
 // from the other display functions as it is using an array retrived from local Storage not 
 // a call to an API
@@ -561,5 +587,6 @@ function displayFavorites() {
       cardBodyDivEl.appendChild(btnEl)
       btnEl.appendChild(iconEl)
     }
+
 
   }
