@@ -182,6 +182,7 @@ nonAlcoholicBtn.addEventListener ("click", noAlcohols);
 
 cocktailBtn.addEventListener ("click", onlyCocktails);
 ordinaryDrinkBtn.addEventListener ("click", onlyOrdinaryDrinks);
+favouritesBtn.addEventListener ("click", displayFavorites);
 
 
 
