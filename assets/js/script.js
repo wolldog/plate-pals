@@ -12,8 +12,8 @@ var cocktailBtn = document.querySelector('#cocktail-filter');
 var ordinaryDrinkBtn = document.querySelector('#ordinary-filter');
 var favouritesBtn = document.querySelector('#favourites-btn');
 
-var cardContainer = document.getElementById('card-container')
-var cardContainer2 = document.getElementById('card-container-2')
+var cardContainer = document.getElementById('card-container');
+var cardContainer2 = document.getElementById('card-container-2');
 
 
 let Random = `randomselection.php`
@@ -128,8 +128,12 @@ function displayMeals(recipes) {
     linkEl.setAttribute("data-value", recipes.meals[i].idMeal);
     linkEl.addEventListener("click", toMethod)
 
-//Set data attribute of button to the unique ID of recipe
-    btnEl.setAttribute("data-value", recipes.meals[i].idMeal);
+// Set 3 data attributes of button; unique ID, recipe name, recipe image. These will
+// be used to create array of favorites in localStorage. 
+    btnEl.setAttribute("data-id", recipes.meals[i].idMeal);
+    btnEl.setAttribute("data-title", recipes.meals[i].strMeal);
+    btnEl.setAttribute("data-image", recipes.meals[i].strMealThumb);
+
 //Add event listener and intial class of favorites button
     btnEl.addEventListener("click", addToFavs);
     iconEl.setAttribute("class", "bi bi-star");
@@ -431,7 +435,7 @@ function onlyOrdinaryDrinks (instructions) {
 // This function will display the list of favourited recipes stored in local storage
 function displayFavorites () {
     console.log("Favorites was clicked");
-}
+  }
 
 // Clear div for food cards
 function clearDiv () {
@@ -448,7 +452,7 @@ function clearDiv2 () {
 function addToFavs(event) {
 
   var recipeId = event.currentTarget.dataset.value;
-  
+
 
   //Saved favourites are extracted from local storage
     
