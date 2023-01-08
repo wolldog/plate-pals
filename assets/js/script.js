@@ -73,16 +73,16 @@ function displayDrinks(instructions) {
   console.log(instructions)
   
   for(var j = 0; j < 8; j++){
-    var cardBodyDivEl = document.createElement('div');
-    var cardTitleEl = document.createElement('h5');
-    var colDivEl = document.createElement('div');
-    var cardDivEl = document.createElement('div');
-    var cardImg = document.createElement('img');
+    var cardBodyDivEl = document.createElement("div");
+    var cardTitleEl = document.createElement("h5");
+    var colDivEl = document.createElement("div");
+    var cardDivEl = document.createElement("div");
+    var cardImg = document.createElement("img");
 
-    colDivEl.setAttribute('class', 'col');
-    cardDivEl.setAttribute('class', 'card');
-    cardBodyDivEl.setAttribute('class', 'card-body');
-    cardTitleEl.setAttribute('class', 'card-title');
+    colDivEl.setAttribute("class", "col");
+    cardDivEl.setAttribute("class", "card");
+    cardBodyDivEl.setAttribute("class", "card-body");
+    cardTitleEl.setAttribute("class", "card-title");
 
 
     cardImg.src = instructions.drinks[j].strDrinkThumb;
@@ -110,24 +110,30 @@ function displayMeals(recipes) {
   console.log(recipes)
   
   for(var i = 0; i < 8; i++){
-    var cardBodyDivEl = document.createElement('div');
-    var cardTitleEl = document.createElement('h5');
-    var colDivEl = document.createElement('div');
-    var cardDivEl = document.createElement('div');
-    var cardImg = document.createElement('img');
-    var btnEl = document.createElement('button');
-    var btnIEl = document.createElement('i');
+    var cardBodyDivEl = document.createElement("div");
+    var cardTitleEl = document.createElement("h5");
+    var colDivEl = document.createElement("div");
+    var cardDivEl = document.createElement("div");
+    var cardImg = document.createElement("img");
+    var btnEl = document.createElement("button");
+    var iconEl = document.createElement("i");
+    var linkEl = document.createElement("a")
 
-    colDivEl.setAttribute('class', 'col');
-    cardDivEl.setAttribute('class', 'card border border-0');
-    cardBodyDivEl.setAttribute('class', 'card-body');
-    cardTitleEl.setAttribute('class', 'card-title');
+    colDivEl.setAttribute("class", "col");
+    cardDivEl.setAttribute("class", "card border border-0");
+    cardBodyDivEl.setAttribute("class", "card-body");
+    cardTitleEl.setAttribute("class", "card-title");
+    
+    // linkEl.setAttribute("href", "./assets/html/method.html")
+    linkEl.setAttribute("data-value", recipes.meals[i].idMeal);
+    linkEl.addEventListener("click", toMethod)
 
 //Set data attribute of button to the unique ID of recipe
-    btnEl.setAttribute('data-value', recipes.meals[i].idMeal)
+    btnEl.setAttribute("data-value", recipes.meals[i].idMeal);
 //Add event listener and intial class of favorites button
     btnEl.addEventListener("click", addToFavs);
-    btnIEl.setAttribute("class", "bi bi-star")
+    iconEl.setAttribute("class", "bi bi-star");
+    cardImg.setAttribute("class", "img-fluid")
 
     cardImg.src = recipes.meals[i].strMealThumb;
     cardTitleEl.textContent = recipes.meals[i].strMeal;
@@ -135,11 +141,12 @@ function displayMeals(recipes) {
     //Append all elements
     cardContainer.appendChild(colDivEl)
     colDivEl.appendChild(cardDivEl)
-    cardDivEl.appendChild(cardImg)
+    cardDivEl.appendChild(linkEl)
+    linkEl.appendChild(cardImg)
     cardDivEl.appendChild(cardBodyDivEl)
     cardBodyDivEl.appendChild(cardTitleEl)
     cardBodyDivEl.appendChild(btnEl)
-    btnEl.appendChild(btnIEl)
+    btnEl.appendChild(iconEl)
 
     //Add filled star to a new favorite via class 'bi-star-fill'
     let favorites = []
@@ -150,7 +157,7 @@ function displayMeals(recipes) {
       }
 
       if (favorites.includes(recipes.meals[i].idMeal)){
-        btnIEl.setAttribute ("class", "bi-star-fill")
+        iconEl.setAttribute ("class", "bi-star-fill")
       }
 
   }
@@ -478,4 +485,12 @@ function addToFavs(event) {
 
     }
 
+  }
+
+  function toMethod(event){
+    
+    var recipeId = event.currentTarget.dataset.value;
+    localStorage.setItem("methodId", recipeId)
+    document.location = ("./assets/html/method.html")
+    
   }
