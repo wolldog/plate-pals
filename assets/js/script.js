@@ -156,7 +156,7 @@ function displayMeals(recipes) {
     
     // linkEl.setAttribute("href", "./assets/html/method.html")
     linkEl.setAttribute("data-value", recipes.meals[i].idMeal);
-    linkEl.addEventListener("click", toMethod)
+    linkEl.addEventListener("click", toMethod);
 
 // Set 3 data attributes of button; unique ID, recipe name, recipe image. These will
 // be used to create array of favorites in localStorage. 
@@ -214,7 +214,6 @@ cocktailBtn.addEventListener ("click", onlyCocktails);
 ordinaryDrinkBtn.addEventListener ("click", onlyOrdinaryDrinks);
 favouritesBtn.addEventListener ("click", displayFavorites);
 
-favouritesBtn.addEventListener ("click", onlyFavourites);
 TitleBtn.addEventListener("click", toMainPage);
 
 // Create a function that will dynamically refine the list of dispalyed based on the origin/area
@@ -590,3 +589,8 @@ function displayFavorites() {
 
 
   }
+
+// Function that will bring user back to the main page 
+function toMainPage() {
+  document.location = ("./index.html");
+}

@@ -1,4 +1,6 @@
 
+var TitleBtn = document.querySelector('#mainPage');
+
 var recipeId = (localStorage.getItem("methodId"))
 
 var source
@@ -27,4 +29,12 @@ function displayMethod (){
 
 
 
+}
+
+TitleBtn.addEventListener("click", toMainPage);
+
+// Added a function that will take user back to the main html page
+// Function that will bring user back to the main page 
+function toMainPage() {
+  document.location = ("../../index.html");
 }
