@@ -507,3 +507,60 @@ function addToFavs(event) {
     document.location = ("./assets/html/method.html")
     
   }
+// Function to display cards of recipes when 'Favorites' button is clicked. This differs 
+// from the other display functions as it is using an array retrived from local Storage not 
+// a call to an API
+  
+function displayFavorites() {
+
+    clearDiv()
+    
+    let favorites = []
+    let myFavourites = JSON.parse(localStorage.getItem('mySavedFavs'));
+    if (myFavourites !==null){
+        favorites = myFavourites;  
+    }
+
+    for(var i = 0; i < favorites.length; i++){
+      var cardBodyDivEl = document.createElement("div");
+      var cardTitleEl = document.createElement("h5");
+      var colDivEl = document.createElement("div");
+      var cardDivEl = document.createElement("div");
+      var cardImg = document.createElement("img");
+      var btnEl = document.createElement("button");
+      var iconEl = document.createElement("i");
+      var linkEl = document.createElement("a")
+  
+      colDivEl.setAttribute("class", "col");
+      cardDivEl.setAttribute("class", "card border border-0");
+      cardBodyDivEl.setAttribute("class", "card-body");
+      cardTitleEl.setAttribute("class", "card-title");
+      
+      linkEl.setAttribute("data-value", favorites[i].id);
+      linkEl.addEventListener("click", toMethod)
+  
+  //Set data attribute of button to the unique ID of recipe
+      btnEl.setAttribute("data-id", favorites[i].id);
+      btnEl.setAttribute("data-title", favorites[i].title);
+      btnEl.setAttribute("data-image", favorites[i].image);
+  
+  //Add event listener and intial class of favorites button
+      btnEl.addEventListener("click", addToFavs);
+      iconEl.setAttribute ("class", "bi-star-fill");
+      cardImg.setAttribute("class", "img-fluid")
+  
+      cardImg.src = favorites[i].image;
+      cardTitleEl.textContent = favorites[i].title;
+   
+      //Append all elements
+      cardContainer.appendChild(colDivEl)
+      colDivEl.appendChild(cardDivEl)
+      cardDivEl.appendChild(linkEl)
+      linkEl.appendChild(cardImg)
+      cardDivEl.appendChild(cardBodyDivEl)
+      cardBodyDivEl.appendChild(cardTitleEl)
+      cardBodyDivEl.appendChild(btnEl)
+      btnEl.appendChild(iconEl)
+    }
+
+  }
