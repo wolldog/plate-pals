@@ -77,12 +77,23 @@ function displayDrinks(instructions) {
     var colDivEl = document.createElement("div");
     var cardDivEl = document.createElement("div");
     var cardImg = document.createElement("img");
+    var btnEl = document.createElement("button");
+    var iconEl = document.createElement("i");
+    var linkEl = document.createElement("a")
 
     colDivEl.setAttribute("class", "col");
     cardDivEl.setAttribute("class", "card");
     cardBodyDivEl.setAttribute("class", "card-body");
     cardTitleEl.setAttribute("class", "card-title");
 
+    linkEl.setAttribute("data-value", instructions.drinks[j].idDrink);
+    linkEl.addEventListener("click", toMethod)
+    //Set data attribute of button to the unique ID of recipe
+    btnEl.setAttribute("data-value", instructions.drinks[j].idDrink);
+    //Add event listener and intial class of favorites button
+    btnEl.addEventListener("click", addToFavs);
+    iconEl.setAttribute("class", "bi bi-star");
+    cardImg.setAttribute("class", "img-fluid")
 
     cardImg.src = instructions.drinks[j].strDrinkThumb;
     cardTitleEl.textContent = instructions.drinks[j].strDrink;
@@ -90,9 +101,24 @@ function displayDrinks(instructions) {
     
     cardContainer.appendChild(colDivEl)
     colDivEl.appendChild(cardDivEl)
-    cardDivEl.appendChild(cardImg)
+    cardDivEl.appendChild(linkEl)
+    linkEl.appendChild(cardImg)
     cardDivEl.appendChild(cardBodyDivEl)
     cardBodyDivEl.appendChild(cardTitleEl)
+    cardBodyDivEl.appendChild(btnEl)
+    btnEl.appendChild(iconEl)
+
+        //Add filled star to a new favorite via class 'bi-star-fill'
+        let favorites = []
+
+        let myFavourites = JSON.parse(localStorage.getItem('mySavedFavs'));
+        if (myFavourites !==null){
+            favorites = myFavourites;
+        }
+  
+        if (favorites.includes(instructions.drinks[j].idDrink)){
+          iconEl.setAttribute ("class", "bi-star-fill")
+        }
 
 
   }
