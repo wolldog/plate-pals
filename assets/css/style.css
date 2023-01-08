@@ -1,6 +1,46 @@
 /* Link to bootstrap icons */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 
+html {
+    background-color: darkgray;
+}
+
+body {
+    font-family: 'Roboto Condensed', Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#mainPage {
+    text-decoration: none;
+    color: rgb(253, 188, 188);
+    font-weight: 500;
+    font-size: 50px;
+    justify-content: center;
+}
+
+#mainPage:hover {
+    transition: 0.8s;
+    color:rgb(241, 185, 255)
+}
+
+#navbar-options {
+    color: rgb(253, 188, 188);
+    margin-left: 50px;
+}
+
+#navbar-options:hover {
+    transition: 0.8s;
+    color:rgb(241, 185, 255)
+}
+
+#favourites-btn {
+    color: rgb(253, 188, 188);
+    margin-left: 50px;
+}
+
+#favourites-btn:hover {
+    transition: 0.8s;
+    color:rgb(241, 185, 255)
+}
 
 
 /* Increase size and remove padding of favorite star */
