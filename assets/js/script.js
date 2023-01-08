@@ -479,7 +479,7 @@ function addToFavs(event) {
     //If a match IS NOT found, the mealID is added to favorites and the array is saved to localstorage
     
     if (findMatch < 0){
-      favorites.push(recipeId);
+      favorites.push(favoriteRecipes);
       localStorage.setItem('mySavedFavs', JSON.stringify(favorites))
       this.children[0].classList.remove("bi-star");
       this.children[0].classList.add("bi-star-fill")
