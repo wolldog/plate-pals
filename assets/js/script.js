@@ -14,6 +14,8 @@ var favouritesBtn = document.querySelector('#favourites-btn');
 
 var cardContainer = document.getElementById('card-container')
 
+var TitleBtn = document.querySelector('#mainPage');
+
 
 let Random = `randomselection.php`
 // Country
@@ -204,7 +206,8 @@ nonAlcoholicBtn.addEventListener ("click", noAlcohols);
 cocktailBtn.addEventListener ("click", onlyCocktails);
 ordinaryDrinkBtn.addEventListener ("click", onlyOrdinaryDrinks);
 
-
+favouritesBtn.addEventListener ("click", onlyFavourites);
+TitleBtn.addEventListener("click", toMainPage);
 
 // Create a function that will dynamically refine the list of dispalyed based on the origin/area
 function onlyCanadianFood(recipes) {
@@ -454,9 +457,21 @@ function onlyOrdinaryDrinks (instructions) {
 
 
 // This function will display the list of favourited recipes stored in local storage
-function displayFavorites () {
-    console.log("Favorites was clicked");
+function onlyFavourites () {
+  clearDiv();
+  console.log("Favourites was clicked")
+  var lastFavourite = JSON.parse(localStorage.getItem("mySavedFav"));
+  console.log(lastFavourite);
+
+  if (lastFavourite !== null) {
+    document.querySelector("#card-container").textContent = lastFavourite;
+    cardTitleEl.textContent = lastFavourite;
+
+  }
+
 }
+
+
 
 // Clear div for food cards
 function clearDiv () {
@@ -514,4 +529,10 @@ function addToFavs(event) {
     localStorage.setItem("methodId", recipeId)
     document.location = ("./assets/html/method.html")
     
+  }
+
+  function toMainPage(){
+    clearDiv();
+    document.location = ("./index.html")
+
   }
