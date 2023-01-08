@@ -1,6 +1,9 @@
 /* Link to bootstrap icons */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 
+
+/* Overall page styling */
+
 html {
     background-color: darkgray;
 }
@@ -8,13 +11,12 @@ html {
 body {
     font-family: 'Roboto Condensed', Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
-/* rgb(253, 188, 188); */
+
 #mainPage {
     text-decoration: none;
     color: rgb(238, 238, 238);
     font-weight: 500;
     font-size: 50px;
-    justify-content: center;
 }
 
 #mainPage:hover {
@@ -41,7 +43,6 @@ body {
     transition: 0.8s;
     color:rgb(241, 185, 255)
 }
-
 
 /* Increase size and remove padding of favorite star */
 
@@ -101,4 +102,12 @@ to allow for positioning of favorite star */
     border: none;
     background-color: white;
 
+}
+
+/* styling for method pages */
+
+#recipeImg {
+    border: 40em;
+    border-radius: 40px;
+    width: 500px
 }
