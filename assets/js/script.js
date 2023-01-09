@@ -496,7 +496,9 @@ function addToFavs(event) {
 
     //The saved recipes are searched for a matching mealID
     
-    var findMatch = favorites.indexOf(recipeId)
+    var findMatch = favorites.map(item => item.id).indexOf(recipeId);
+    console.log(findMatch)
+    
     
 
     //If a match IS NOT found, the mealID is added to favorites and the array is saved to localstorage
