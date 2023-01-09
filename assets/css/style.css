@@ -24,12 +24,12 @@ body {
     color:rgb(241, 185, 255)
 }
 
-#navbar-options {
+.navbar-options {
     color: rgb(238, 238, 238);
-    margin-left: 50px;
+    /* margin-left: 50px; */
 }
 
-#navbar-options:hover {
+.navbar-options:hover {
     transition: 0.8s;
     color:rgb(241, 185, 255)
 }
@@ -43,6 +43,8 @@ body {
     transition: 0.8s;
     color:rgb(241, 185, 255)
 }
+
+
 
 /* Increase size and remove padding of favorite star */
 
@@ -111,3 +113,76 @@ to allow for positioning of favorite star */
     border-radius: 40px;
     width: 500px
 }
+
+
+#container {
+    margin: 0 auto;
+  }
+  
+  p {
+    text-align: center;
+  }
+  
+  nav {
+    margin: 50px 0;
+    background-color: darkgray;
+  }
+  
+  nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    }
+    
+  nav ul li {
+    display:inline-block;
+    background-color:darkgray;
+    }
+  
+  nav a {
+    display:block;
+    padding:0 10px; 
+    color:rgb(242, 5, 5);
+    font-size:20px;
+    line-height: 60px;
+    text-decoration:none;
+  }
+  
+  nav a:hover { 
+    background-color: #dcedf4; 
+  }
+  
+  /* Hide Dropdowns by Default */
+  nav ul ul {
+    display: none;
+    position: inherit; 
+    top: 60px; /* the height of the main nav */
+  }
+    
+  /* Display Dropdowns on Hover */
+  nav ul li:hover > ul {
+    display:inherit;
+  }
+    
+  /* Fisrt Tier Dropdown */
+  nav ul ul li {
+    width:170px;
+    float:none;
+    display:list-item;
+    position: inherit;
+  }
+  
+  /* Second, Third and more Tiers */
+  nav ul ul ul li {
+    background-color:#FFF;
+    color: #898989;
+    position: inherit;
+    top:-60px; 
+    left:170px;
+  }
+  
+    
+  /* Change this in order to change the Dropdown symbol */
+  li > a:after { content:  ' +'; }
+  li > a:only-child:after { content: ''; }
