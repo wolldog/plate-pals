@@ -33,7 +33,7 @@ let Pasta = 'filter.php?c=Pasta'
 let Dessert = 'filter.php?c=Dessert'
 
 // Alcohol
-let Alcoholic = 'filter.php?a=Alcoholic'
+let alcoholic = 'filter.php?a=Alcoholic'
 let nonAlcholic = 'filter.php?a=Non_Alcoholic'
 // Glass Type
 let cocktailGlass = 'filter.php?g=Cocktail_glass'
@@ -379,7 +379,7 @@ function onlyDesserts (recipes) {
 }
 
 function onlyAlcohols (instructions) {
-  cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/${Alcoholic}`
+  cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/${alcoholic}`
 
   fetch(cocktailApiUrl).then(function (response) {
       if (response.ok) {
