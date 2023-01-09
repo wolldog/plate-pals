@@ -10,6 +10,7 @@
   <!-- Link to font-awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
   <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;1,200&family=Quicksand&family=Roboto+Condensed&display=swap" rel="stylesheet">
   <title>Plate Pals</title>
 </head>
 <body>
@@ -23,7 +24,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar-options" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Food by country
               </a>
               <ul class="dropdown-menu">
@@ -36,7 +37,7 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar-options" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Food by category
               </a>
               <ul class="dropdown-menu">
@@ -51,7 +52,7 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar-options" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Cocktail by alcohol
               </a>
               <ul class="dropdown-menu">
@@ -62,7 +63,7 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar-options" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Cocktail by glass
               </a>
               <ul class="dropdown-menu">
@@ -90,18 +91,18 @@
   <main>
     <div class="row row-cols-2 g-4 m-2 py-5">
         <div class="col">
-            <h2 id="recipeTitle"> </h2>
+          <h2 id="recipeTitle"> </h2>
+          <img id="recipeImg">
         </div>
         <div class="col">
-            <img id="recipeImg">
+          <h3 id="recipeMethod"> Recipe Method </h3>
+          <h3 id="recipeIngredients"> Recipe Ingredients </h3>
         </div>
     </div>
     <div class="row row-cols-2 g-4 m-2 py-5" id="method-container">
         <div class="col">
-            <h3 id="recipeMethod"> Recipe Method </h3>
         </div>
         <div class="col">
-            <h3 id="recipeIngredients"> Recipe Ingredients </h3>
         </div>
     </div>
     <div class="row">
