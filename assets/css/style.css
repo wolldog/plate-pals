@@ -1,15 +1,20 @@
 /* Link to bootstrap icons */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 
-
 /* Overall page styling */
 
 html {
     background-color: darkgray;
+    
 }
 
 body {
     font-family: 'Roboto Condensed', Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#navbar {
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 #mainPage {
@@ -50,6 +55,11 @@ body {
    
    font-size: x-large;
    padding: 0em;
+}
+
+.bi-list {
+    color: rgb(238, 238, 238);
+
 }
 
 /* Favorite star changes to yellow on hover */
@@ -111,3 +121,16 @@ to allow for positioning of favorite star */
     border-radius: 40px;
     width: 500px
 }
+
+@media screen and (max-width: 768px ) {
+    /* Reduce padding on heading */
+    h1 {
+        padding: 5px 5px 5px 5px;
+        text-align: left;
+     }}
+
+@media screen and (max-width: 480px ){
+    /* Change flex direction to column  */
+        header {
+            flex-direction: column;
+        }}
