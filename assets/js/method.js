@@ -6,6 +6,7 @@ var recipeId = (localStorage.getItem("methodId"))
 var source
 
 const methodApi = `https://www.themealdb.com/api/json/v2/9973533/lookup.php?i=${recipeId}`
+const methodApiDrink = `https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=${recipeId}`
 
 fetch(methodApi).then(function (response) {
     if (response.ok) {
@@ -20,12 +21,34 @@ fetch(methodApi).then(function (response) {
     }
   });
 
+  fetch(methodApiDrink).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        source = (data.drinks[0]);
+        displayMethodDrinks ();
+        displayIngredients();
+        
+      });
+    } else { 
+      alert('Error: ' + response.statusText);
+    }
+  });
+
+
+
 function displayMethod (){
   
   document.getElementById("recipeTitle").innerHTML = source.strMeal;
   document.getElementById("recipeImg").src = source.strMealThumb;
   document.getElementById("recipeMethod").innerHTML = source.strInstructions;
-  
+
+  console.log(source)
+}
+function displayMethodDrinks (){
+
+  document.getElementById("recipeTitle").innerHTML = source.strDrink;
+  document.getElementById("recipeImg").src = source.strDrinkThumb;
+  document.getElementById("recipeMethod").innerHTML = source.strInstructions;
   console.log(source)
 }
 
