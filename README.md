@@ -15,6 +15,9 @@ The group assignment has taught us plenty - how to use GitHub correctly as a gro
 
 None required. The deployed application is accessed via a browser.
 
+[Plate Pals](https://wolldog.github.io/plate-pals/)
+
+
 ## Usage
 Below is a screenshot of our deployed application.
 <img width="1440" alt="Plate Pals Deployment" src="https://user-images.githubusercontent.com/117012325/211534309-60b50af0-86a7-400d-b79e-4bd7cb197b36.png">
