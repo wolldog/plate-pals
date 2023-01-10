@@ -16,15 +16,8 @@ The group assignment has taught us plenty - how to use GitHub correctly as a gro
 None required. The deployed application is accessed via a browser.
 
 ## Usage
-
-Provide instructions and examples for use. Include screenshots as needed.
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative file path, add it to your README using the following syntax:
-
-
-![alt text](./assets/Screenshot.png)
-![alt text](./assets/Screenshot_Of_Website_working.png)
-
+Below is a screenshot of our deployed application.
+<img width="1440" alt="Plate Pals Deployment" src="https://user-images.githubusercontent.com/117012325/211534309-60b50af0-86a7-400d-b79e-4bd7cb197b36.png">
 
 ## Credits
 
@@ -65,5 +58,3 @@ AS A food enthusiast with passion to host people
 I WANT to choose a good variety of simple recipes for foods and drinks 
 SO THAT I can impress my guests with good food and drinks
 ```
-
-
