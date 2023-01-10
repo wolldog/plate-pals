@@ -2,8 +2,12 @@
 var canadianFoodBtn = document.querySelector('#canadian-filter');
 var frenchFoodBtn = document.querySelector('#french-filter');
 var italianFoodBtn = document.querySelector('#italian-filter');
+var britishFoodBtn = document.querySelector('#british-filter');
+var japaneseFoodBtn = document.querySelector('#japanese-filter');
+var americanFoodBtn = document.querySelector('#american-filter');
 var chickenCatBtn = document.querySelector('#chicken-filter');
 var seafoodCatBtn = document.querySelector('#seafood-filter');
+var meatFoodBtn = document.querySelector('#meat-filter');
 var pastaCatBtn = document.querySelector('#pasta-filter');
 var dessertCatBtn = document.querySelector('#dessert-filter');
 var alcoholicBtn = document.querySelector('#alcoholic-filter');
@@ -25,12 +29,17 @@ let Random = `randomselection.php`
 let Canadian = 'filter.php?a=Canadian'
 let Italian = 'filter.php?a=Italian'
 let French = 'filter.php?a=French'
+let English = 'filter.php?a=English'
+let Japanese = 'filter.php?a=Japanese'
+let American = 'filter.php?a=American'
+let British = 'filter.php?a=British'
 
 // Category
 let Seafood = 'filter.php?c=Seafood'
 let Chicken = 'filter.php?c=Chicken'
 let Pasta = 'filter.php?c=Pasta'
 let Dessert = 'filter.php?c=Dessert'
+let Meat = 'filter.php?c=Lamb'
 
 // Alcohol
 let Alcoholic = 'filter.php?a=Alcoholic'
@@ -140,7 +149,6 @@ function displayMeals(recipes) {
 
 function displayDrinks(instructions) {
 
- 
 
   console.log(instructions)
   
@@ -206,11 +214,16 @@ function displayDrinks(instructions) {
 canadianFoodBtn.addEventListener ("click", onlyCanadianFood );
 frenchFoodBtn.addEventListener ("click", onlyFrenchFood );
 italianFoodBtn.addEventListener ("click", onlyItalianFood );
+britishFoodBtn.addEventListener ("click", onlyBritishFood );
+japaneseFoodBtn.addEventListener ("click", onlyJapaneseFood );
+americanFoodBtn.addEventListener ("click", onlyAmericanFood );
+
 
 chickenCatBtn.addEventListener ("click", onlyChickenFood );
 seafoodCatBtn.addEventListener ("click", onlySeafood  );
 pastaCatBtn.addEventListener ("click", onlyPastas);
 dessertCatBtn.addEventListener ("click", onlyDesserts);
+meatFoodBtn.addEventListener ("click", onlyMeats);
 
 alcoholicBtn.addEventListener ("click", onlyAlcohols);
 nonAlcoholicBtn.addEventListener ("click", noAlcohols);
@@ -287,6 +300,98 @@ function onlyItalianFood(recipes) {
     console.log(recipes);
     displayMeals(recipes);
 }
+
+function onlyBritishFood(recipes) {
+
+  foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${British}`
+
+  fetch(foodApiUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          displayMeals(data)
+          console.log("data after event click:");
+          console.log(data);
+          
+        });
+      } else { 
+        alert('Error: ' + response.statusText);
+      }
+    });
+    // call display meals function
+    console.log("recipes after event click:");
+    console.log(recipes);
+    clearDiv();
+    displayMeals(recipes);
+}
+
+function onlyAmericanFood(recipes) {
+
+  foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${American}`
+
+  fetch(foodApiUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          displayMeals(data)
+          console.log("data after event click:");
+          console.log(data);
+          
+        });
+      } else { 
+        alert('Error: ' + response.statusText);
+      }
+    });
+    // call display meals function
+    console.log("recipes after event click:");
+    console.log(recipes);
+    clearDiv();
+    displayMeals(recipes);
+}
+function onlyJapaneseFood(recipes) {
+
+  foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Japanese}`
+
+  fetch(foodApiUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          displayMeals(data)
+          console.log("data after event click:");
+          console.log(data);
+          
+        });
+      } else { 
+        alert('Error: ' + response.statusText);
+      }
+    });
+    // call display meals function
+    console.log("recipes after event click:");
+    console.log(recipes);
+    clearDiv();
+    displayMeals(recipes);
+}
+
+function onlyMeats(recipes) {
+
+  foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Meat}`
+
+  fetch(foodApiUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          displayMeals(data)
+          console.log("data after event click:");
+          console.log(data);
+          
+        });
+      } else { 
+        alert('Error: ' + response.statusText);
+      }
+    });
+    // call display meals function
+    console.log("recipes after event click:");
+    console.log(recipes);
+    clearDiv();
+    displayMeals(recipes);
+}
+
 
 function onlyChickenFood(recipes) {
 
