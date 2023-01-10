@@ -140,7 +140,6 @@ function displayMeals(recipes) {
 
 function displayDrinks(instructions) {
 
- 
 
   console.log(instructions)
   
@@ -241,6 +240,7 @@ function onlyCanadianFood(recipes) {
     // call display meals function
     console.log("recipes after event click:");
     console.log(recipes);
+    clearDiv();
     displayMeals(recipes);
 }
 
@@ -263,6 +263,7 @@ function onlyFrenchFood(recipes) {
     // call display meals function
     console.log("recipes after event click:");
     console.log(recipes);
+    clearDiv();
     displayMeals(recipes);
 }
 
@@ -285,6 +286,7 @@ function onlyItalianFood(recipes) {
     // call display meals function
     console.log("recipes after event click:");
     console.log(recipes);
+    clearDiv();
     displayMeals(recipes);
 }
 
@@ -307,6 +309,7 @@ function onlyChickenFood(recipes) {
     // call display meals function
     console.log("recipes after event click:");
     console.log(recipes);
+    clearDiv();
     displayMeals(recipes);
 }
 
@@ -332,6 +335,7 @@ function onlySeafood (recipes) {
     // call display meals function
     console.log("recipes after event click:");
     console.log(recipes);
+    clearDiv();
     displayMeals(recipes);
 }
 
@@ -356,6 +360,7 @@ function onlyPastas (recipes) {
     // call display meals function
     console.log("recipes after event click:");
     console.log(recipes);
+    clearDiv();
     displayMeals(recipes);
 }
 
@@ -380,6 +385,7 @@ function onlyDesserts (recipes) {
     // call display meals function
     console.log("recipes after event click:");
     console.log(recipes);
+    clearDiv();
     displayMeals(recipes);
 }
 
@@ -401,6 +407,7 @@ function onlyAlcohols (instructions) {
     // call display drinks function
     console.log("Instructions after event click:");
     console.log(instructions);
+    clearDiv();
     displayDrinks(instructions);
 }
 
@@ -422,6 +429,7 @@ function noAlcohols (instructions) {
     // call display drinks function
     console.log("Instructions after event click:");
     console.log(instructions);
+    clearDiv();
     displayDrinks(instructions);
 }
 
@@ -443,6 +451,7 @@ function onlyCocktails (instructions) {
     // call display drinks function
     console.log("Instructions after event click:");
     console.log(instructions);
+    clearDiv();
     displayDrinks(instructions);
 }
 
@@ -464,6 +473,7 @@ function onlyOrdinaryDrinks (instructions) {
     // call display drinks function
     console.log("Instructions after event click:");
     console.log(instructions);
+    clearDiv();
     displayDrinks(instructions);
 }
 
