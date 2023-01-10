@@ -31,7 +31,7 @@ function displayMethod (){
 
 function displayIngredients() {
 
-   
+  document.getElementById("recipeMethod").innerHTML = "";
   document.getElementById("item-1").innerHTML = source.strIngredient1 + ' - ' + source.strMeasure1;
   document.getElementById("item-2").innerHTML = source.strIngredient2 + ' - ' + source.strMeasure2;
   document.getElementById("item-3").innerHTML = source.strIngredient3 + ' - ' + source.strMeasure4;
@@ -55,3 +55,58 @@ TitleBtn.addEventListener("click", toMainPage);
 function toMainPage() {
   document.location = ("../../index.html");
 }
+
+
+
+
+ 
+ const apiURL = "https://www.themealdb.com/api/json/v2/9973533/";
+   
+   const urlParams = new URLSearchParams(window.location.search);
+   const mealId = urlParams.get("mealId");
+   
+   // Fetch meal by ID
+   fetch(`${apiURL}lookup.php?i=${mealId}`)
+     .then(response => response.json())
+     .then(data => {
+       const meal = data.meals[0];
+   
+       // Create elements for meal name, image, ingredients, and instructions
+       const mealContainer = document.querySelector(".meal-container");
+       const mealName = document.createElement("h1");
+       mealName.textContent = meal.strMeal;
+       const img = document.createElement("img");
+       img.setAttribute("src", meal.strMealThumb);
+       img.setAttribute("alt", meal.strMeal);
+       const ingredientsList = document.createElement("ul");
+       ingredientsList.classList.add("ingredients-list");
+       const instructions = document.createElement("p");
+       instructions.classList.add("instructions");
+       instructions.textContent = meal.strInstructions;
+   
+       // list of ingredients
+       const ingredients = [];
+       for (let i = 1; i <= 15; i++) {
+         const ingredientMeasurement = meal[`strMeasure${i}`];
+         if (ingredientMeasurement) {
+           ingredients.push(`${ingredientMeasurement} ${meal[`strIngredient${i}`]}`);
+         } else {
+           break;
+         }
+       }
+   
+       // Add ingredients 
+       ingredients.forEach(ingredient => {
+         const listItem = document.createElement("li");
+         listItem.textContent = ingredient;
+         ingredientsList.appendChild(listItem);
+       });
+   
+       
+       mealContainer.appendChild(mealName);
+       mealContainer.appendChild(img);
+       mealContainer.appendChild(ingredientsList);
+       mealContainer.appendChild(instructions);
+     });
+
+
