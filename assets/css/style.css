@@ -45,6 +45,10 @@ body {
     color:rgb(241, 185, 255)
 }
 
+.bi-list {
+    color: rgb(238, 238, 238);   
+}
+
 /* Increase size and remove padding of favorite star */
 
 .bi-star {
