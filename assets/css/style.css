@@ -17,7 +17,8 @@ body {
     color: rgb(238, 238, 238);
     font-weight: 500;
     font-size: 30px;
-    padding: 15px;
+    padding: 20px;
+
 }
 
 #mainPage:hover {
@@ -43,6 +44,10 @@ body {
 #favourites-btn:hover {
     transition: 0.8s;
     color:rgb(241, 185, 255)
+}
+
+.bi-list {
+    color: rgb(238, 238, 238);   
 }
 
 /* Increase size and remove padding of favorite star */
