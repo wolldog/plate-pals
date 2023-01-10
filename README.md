@@ -13,10 +13,7 @@ The group assignment has taught us plenty - how to use GitHub correctly as a gro
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
-I initially opened the website to see how much of the work was done to match the acceptance criteria.
-I then went ahead and developed the javascript code, HTML and CSS files
-to implememnt the actual Work Day Scheduler
+None required. The deployed application is accessed via a browser.
 
 ## Usage
 
@@ -31,13 +28,10 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
-
-GitHub Profile = TODO:
+Lydia Wallis - gitub.com/wolldog
+Sudarshan Singh - github.com/sudarshans30
+Mohammad Nabiei - github.com/mamad2000
+Jackson Kent - github.com/jacko2611
 
 ## License
 
