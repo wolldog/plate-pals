@@ -59,7 +59,7 @@ body {
 
 .bi-list {
     color: rgb(238, 238, 238);
-
+    
 }
 
 /* Favorite star changes to yellow on hover */
@@ -116,10 +116,22 @@ to allow for positioning of favorite star */
 
 /* styling for method pages */
 
+#recipeTitle {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
 #recipeImg {
+    padding-top: 25px;
+    padding-bottom: 25px;
     border: 40em;
     border-radius: 40px;
     width: 500px
+}
+
+#recipeMethod {
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 @media screen and (max-width: 768px ) {

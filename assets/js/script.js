@@ -42,7 +42,6 @@ let champagneFlute = 'filter.php?g=Champagne_flute'
 var foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Random}`
 var cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/${Random}`
 
-
 fetch(cocktailApiUrl).then(function (response) {
   if (response.ok) {
     response.json().then(function (data) {
@@ -56,7 +55,6 @@ fetch(cocktailApiUrl).then(function (response) {
   }
 });
 
-
 fetch(foodApiUrl).then(function (response) {
   if (response.ok) {
     response.json().then(function (data) {
@@ -67,7 +65,6 @@ fetch(foodApiUrl).then(function (response) {
     alert('Error: ' + response.statusText);
   }
 });
-
 
 
 function displayDrinks(instructions) {
