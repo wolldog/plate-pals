@@ -717,3 +717,230 @@ function displayFavorites() {
 function toMainPage() {
   document.location = ("./index.html");
 }
+
+// code for the carousel
+const apiURL = "https://www.themealdb.com/api/json/v2/9973533/randomselection.php";
+
+setInterval(function() {
+  fetch(apiURL)
+    .then(response => response.json())
+    .then(data => {
+      
+      const meals = data.meals;
+
+      
+      const carouselInner = document.querySelector(".carousel-inner");
+      carouselInner.innerHTML = "";
+
+      // for Loop through meals
+      for (let i = 0; i < meals.length; i++) {
+      
+        const meal = meals[i];
+
+        // items for the carousel
+        const carouselItem = document.createElement("div");
+        carouselItem.classList.add("carousel-item");
+        if (i === 0) {
+          carouselItem.classList.add("active");
+        }
+
+        // Created image for the meals
+        const img = document.createElement("img");
+        img.classList.add("d-block", "w-100");
+        img.setAttribute("src", meal.strMealThumb);
+        img.setAttribute("alt", meal.strMeal);
+
+        
+        const mealInfo = document.createElement("div");
+        mealInfo.classList.add("meal-info");
+        mealInfo.innerHTML = `
+          <h2>${meal.strMeal}</h2>
+          <button id="view-recipe-btn" data-meal-id="${meal.idMeal}">View Full Recipe</button>
+        `;
+
+        
+        carouselItem.appendChild(img);
+        carouselItem.appendChild(mealInfo);
+        carouselInner.appendChild(carouselItem);
+      }
+
+      const apiURL = "https://www.themealdb.com/api/json/v2/9973533/";
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const mealId = urlParams.get("mealId");
+
+      // Fetch meal by ID
+      fetch(`${apiURL}lookup.php?i=${mealId}`)
+        .then(response => response.json())
+        .then(data => {
+          const meal = data.meals[0];
+
+
+
+          
+          
+        });
+
+
+      // added event listener for the button
+      document.querySelectorAll("#view-recipe-btn").forEach(button => {
+        button.addEventListener("click", function() {
+          const mealId = this.getAttribute("data-meal-id");
+          const currentMeal = meals.find(meal => meal.idMeal === mealId);
+
+          // Open full recipe in carousel.html
+          openInNewPage(`./assets/html/carousel.html?mealId=${mealId}`);
+        });
+      });
+    });
+}, 5000);
+
+function openInNewPage(url) {
+  window.open(url);
+}
+
+
+// code for search button
+var searchForm = document.querySelector(".d-flex");
+var searchInput = document.querySelector(".form-control");
+
+// Set up API URLs
+var mealapiURL = "https://www.themealdb.com/api/json/v2/9973533/filter.php?i=";
+var cocktailApiURL = "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=";
+
+searchForm.addEventListener("submit", function(event) {
+  
+  event.preventDefault();
+
+  // Get search query
+  const query = searchInput.value;
+
+  // Fetch search results from meal database
+  fetch(`${mealapiURL}${query}`)
+    .then(response => response.json())
+    .then(data => {
+      // Get array of meals
+      const meals = data.meals;
+
+     
+      const resultsContainer = document.querySelector(".results");
+      resultsContainer.innerHTML = "";
+
+      
+      meals.forEach(meal => {
+        
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+          <img src="${meal.strMealThumb}" class="card-img-top" alt="${meal.strMeal}">
+          <div class="card-body">
+            <h5 class="card-title">${meal.strMeal}</h5>
+            <button class="btn btn-primary view-recipe-btn" data-meal-id="${meal.idMeal}">View Recipe</button>
+          </div>
+        `;
+
+       
+        resultsContainer.appendChild(card);
+      });
+
+      
+      document.querySelectorAll(".view-recipe-btn").forEach(button => {
+        button.addEventListener("click", function() {
+          
+          const mealId = this.dataset.mealId;
+
+          // Get current meal
+          const currentMeal = meals.find(meal => meal.idMeal === mealId);
+
+          
+          displayFullRecipe(currentMeal);
+        });
+      });
+    });
+
+  // Fetch search results from cocktail database
+  fetch(`${cocktailApiURL}${query}`)
+    .then(response => response.json())
+    .then(data => {
+      
+      const cocktails = data.drinks;
+
+     
+      const resultsContainer = document.querySelector(".results");
+      resultsContainer.innerHTML = "";
+
+      
+      cocktails.forEach(cocktail => {
+       
+const card = document.createElement("div");
+card.classList.add("card");
+card.innerHTML = `
+  <img src="${cocktail.strDrinkThumb}" class="card-img-top" alt="${cocktail.strDrink}">
+  <div class="card-body">
+    <h5 class="card-title">${cocktail.strDrink}</h5>
+    <button class="btn btn-primary view-recipe-btn" data-cocktail-id="${cocktail.idDrink}">View Recipe</button>
+  </div>
+`;
+
+
+resultsContainer.appendChild(card);
+});
+
+document.querySelectorAll(".view-recipe-btn").forEach(button => {
+button.addEventListener("click", function() {
+  
+  const cocktailId = this.dataset.cocktailId;
+
+ 
+  const currentCocktail = cocktails.find(cocktail => cocktail.idDrink === cocktailId);
+
+ 
+  displayFullRecipe(currentCocktail);
+});
+});
+});
+});
+
+
+function displayFullRecipe(recipe) {
+ 
+  document.querySelector(".recipe").innerHTML = "";
+
+  const ingredientsList = document.createElement("ul");
+  const instructions = document.createElement("p");
+
+  let ingredients;
+  if (recipe.strCategory === "Cocktail") {
+    ingredients = getCocktailIngredients(recipe);
+  } else {
+    ingredients = getMealIngredients(recipe);
+  }
+
+  //
+  ingredients.forEach(ingredient => {
+    const listItem = document.createElement("li");
+    listItem.textContent = ingredient;
+    ingredientsList.appendChild(listItem);
+  });
+
+ 
+  instructions.textContent = recipe.strInstructions;
+
+
+  document.querySelector(".recipe").appendChild(ingredientsList);
+  document.querySelector(".recipe").appendChild(instructions);
+}
+
+
+function getMealIngredients(meal) {
+  
+  const ingredients = [];
+
+  // Get ingredients and measures from API response
+  for (let i = 1; i <= 20; i++) {
+    if (meal[`strIngredient${i}`]) {
+      ingredients.push(`${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}`);
+    } else {
+      break;
+   
+    }}}
