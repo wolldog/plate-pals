@@ -38,3 +38,8 @@ TitleBtn.addEventListener("click", toMainPage);
 function toMainPage() {
   document.location = ("../../index.html");
 }
+
+
+
+// SCRIPT JS copy
+
