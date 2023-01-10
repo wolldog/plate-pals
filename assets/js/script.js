@@ -42,18 +42,6 @@ let champagneFlute = 'filter.php?g=Champagne_flute'
 var foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Random}`
 var cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/${Random}`
 
-fetch(cocktailApiUrl).then(function (response) {
-  if (response.ok) {
-    response.json().then(function (data) {
-      displayDrinks(data)
-      console.log("Drinks API");
-      console.log(data);
-        
-    });
-  } else { 
-    alert('Error: ' + response.statusText);
-  }
-});
 
 fetch(foodApiUrl).then(function (response) {
   if (response.ok) {
@@ -67,64 +55,19 @@ fetch(foodApiUrl).then(function (response) {
 });
 
 
-function displayDrinks(instructions) {
-
-  clearDiv();
-
-  console.log(instructions)
-  
-  for(var j = 0; j < 8; j++){
-    var cardBodyDivEl = document.createElement("div");
-    var cardTitleEl = document.createElement("h5");
-    var colDivEl = document.createElement("div");
-    var cardDivEl = document.createElement("div");
-    var cardImg = document.createElement("img");
-    var btnEl = document.createElement("button");
-    var iconEl = document.createElement("i");
-    var linkEl = document.createElement("a")
-
-    colDivEl.setAttribute("class", "col");
-    cardDivEl.setAttribute("class", "card border border-0");
-    cardBodyDivEl.setAttribute("class", "card-body");
-    cardTitleEl.setAttribute("class", "card-title");
-
-    linkEl.setAttribute("data-value", instructions.drinks[j].idDrink);
-    linkEl.addEventListener("click", toMethod)
-    //Set data attribute of button to the unique ID of recipe
-    btnEl.setAttribute("data-value", instructions.drinks[j].idDrink);
-    //Add event listener and intial class of favorites button
-    btnEl.addEventListener("click", addToFavs);
-    iconEl.setAttribute("class", "bi bi-star");
-    cardImg.setAttribute("class", "img-fluid")
-
-    cardImg.src = instructions.drinks[j].strDrinkThumb;
-    cardTitleEl.textContent = instructions.drinks[j].strDrink;
-
-    
-    cardContainer.appendChild(colDivEl)
-    colDivEl.appendChild(cardDivEl)
-    cardDivEl.appendChild(linkEl)
-    linkEl.appendChild(cardImg)
-    cardDivEl.appendChild(cardBodyDivEl)
-    cardBodyDivEl.appendChild(cardTitleEl)
-    cardBodyDivEl.appendChild(btnEl)
-    btnEl.appendChild(iconEl)
-
-        //Add filled star to a new favorite via class 'bi-star-fill'
-        let favorites = []
-
-        let myFavourites = JSON.parse(localStorage.getItem('mySavedFavs'));
-        if (myFavourites !==null){
-            favorites = myFavourites;
-        }
-  
-        if (favorites.includes(instructions.drinks[j].idDrink)){
-          iconEl.setAttribute ("class", "bi-star-fill")
-        }
-
-
+fetch(cocktailApiUrl).then(function (response) {
+  if (response.ok) {
+    response.json().then(function (data) {
+      displayDrinks(data)
+      console.log("Drinks API");
+      console.log(data);
+        
+    });
+  } else { 
+    alert('Error: ' + response.statusText);
   }
-}
+});
+
 
 // 'displayMeals' creates recipe cards based on the current search value. The initial search value
 // is a random selection of 8 recipes. Each recipe card has an image, title, and favorite button.
@@ -193,6 +136,71 @@ function displayMeals(recipes) {
 
   }
 }
+
+
+function displayDrinks(instructions) {
+
+ 
+
+  console.log(instructions)
+  
+  for(var j = 0; j < 8; j++){
+    var cardBodyDivEl = document.createElement("div");
+    var cardTitleEl = document.createElement("h5");
+    var colDivEl = document.createElement("div");
+    var cardDivEl = document.createElement("div");
+    var cardImg = document.createElement("img");
+    var btnEl = document.createElement("button");
+    var iconEl = document.createElement("i");
+    var linkEl = document.createElement("a")
+
+    colDivEl.setAttribute("class", "col");
+    cardDivEl.setAttribute("class", "card border border-0");
+    cardBodyDivEl.setAttribute("class", "card-body");
+    cardTitleEl.setAttribute("class", "card-title");
+
+    linkEl.setAttribute("data-value", instructions.drinks[j].idDrink);
+    linkEl.addEventListener("click", toMethod)
+    
+    //Set data attribute of button to the unique ID of recipe
+    btnEl.setAttribute("data-id", instructions.drinks[j].idDrink);
+    btnEl.setAttribute("data-title", instructions.drinks[j].strDrink);
+    btnEl.setAttribute("data-image", instructions.drinks[j].strDrinkThumb);
+    
+    //Add event listener and intial class of favorites button
+    btnEl.addEventListener("click", addToFavs);
+    iconEl.setAttribute("class", "bi bi-star");
+    cardImg.setAttribute("class", "img-fluid")
+
+    cardImg.src = instructions.drinks[j].strDrinkThumb;
+    cardTitleEl.textContent = instructions.drinks[j].strDrink;
+
+    
+    cardContainer.appendChild(colDivEl)
+    colDivEl.appendChild(cardDivEl)
+    cardDivEl.appendChild(linkEl)
+    linkEl.appendChild(cardImg)
+    cardDivEl.appendChild(cardBodyDivEl)
+    cardBodyDivEl.appendChild(cardTitleEl)
+    cardBodyDivEl.appendChild(btnEl)
+    btnEl.appendChild(iconEl)
+
+        //Add filled star to a new favorite via class 'bi-star-fill'
+        let favorites = []
+
+        let myFavourites = JSON.parse(localStorage.getItem('mySavedFavs'));
+        if (myFavourites !==null){
+            favorites = myFavourites;
+        }
+  
+        if (favorites.includes(instructions.drinks[j].idDrink)){
+          iconEl.setAttribute ("class", "bi-star-fill")
+        }
+
+
+  }
+}
+
 
 // Add click listeners for the nav bar  refinement options and favourite button
 canadianFoodBtn.addEventListener ("click", onlyCanadianFood );
