@@ -116,3 +116,118 @@ to allow for positioning of favorite star */
     border-radius: 40px;
     width: 500px
 }
+
+.card-body button {
+
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    padding: 2px 1px;
+    border: none;
+    background-color: white;
+
+}
+
+/* styling for method pages */
+
+#recipeImg {
+    border: 40em;
+    border-radius: 40px;
+    width: 500px
+}
+
+.card-body button {
+
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    padding: 2px 1px;
+    border: none;
+    background-color: white;
+    margin-top: 100px;
+
+}
+
+
+#carouselExampleIndicators {
+    height: 500px;
+    width: 1000px;
+    margin: 0 auto;
+    border: 2px solid black;
+  }
+  
+  .meal-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .meal-info h2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .full-recipe-instructions {
+    margin-top: 1rem;
+  }
+  
+  .view-full-recipe-button {
+    margin-top: 0.5rem;
+  }
+   
+
+    .carousel-item img {
+        height: 500px; 
+        object-fit: cover; 
+      }
+      
+      .carousel-item .meal-info {
+        position: absolute; 
+        bottom: 0; 
+        width: 100%; 
+        background-color: rgba(0, 0, 0, 0.5); 
+        color: white; 
+        padding: 20px; 
+      }
+      
+      .carousel-item .meal-info h2 {
+        margin: 0; 
+        font-size: 1.5em; 
+      }
+      
+      .carousel-item .meal-info .view-full-recipe-button {
+        margin-top: 10px; 
+      }
+      
+      .carousel-item .meal-info .full-recipe-instructions {
+        margin-top: 20px; 
+      }
+      .carousel-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      .carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+.carousel-wrapper {
+    display: flex;
+  }
+  .carousel-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  @media (max-width: 767px) {
+    .carousel-item {
+      width: 100%;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .carousel-item {
+      width: 100%;
+    }
+  }
