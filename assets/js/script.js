@@ -2,8 +2,12 @@
 var canadianFoodBtn = document.querySelector('#canadian-filter');
 var frenchFoodBtn = document.querySelector('#french-filter');
 var italianFoodBtn = document.querySelector('#italian-filter');
+var britishFoodBtn = document.querySelector('#british-filter');
+var japaneseFoodBtn = document.querySelector('#japanese-filter');
+var americanFoodBtn = document.querySelector('#american-filter');
 var chickenCatBtn = document.querySelector('#chicken-filter');
 var seafoodCatBtn = document.querySelector('#seafood-filter');
+var meatFoodBtn = document.querySelector('#meat-filter');
 var pastaCatBtn = document.querySelector('#pasta-filter');
 var dessertCatBtn = document.querySelector('#dessert-filter');
 var alcoholicBtn = document.querySelector('#alcoholic-filter');
@@ -25,12 +29,17 @@ let Random = `randomselection.php`
 let Canadian = 'filter.php?a=Canadian'
 let Italian = 'filter.php?a=Italian'
 let French = 'filter.php?a=French'
+let English = 'filter.php?a=English'
+let Japanese = 'filter.php?a=Japanese'
+let American = 'filter.php?a=American'
+let British = 'filter.php?a=British'
 
 // Category
 let Seafood = 'filter.php?c=Seafood'
 let Chicken = 'filter.php?c=Chicken'
 let Pasta = 'filter.php?c=Pasta'
 let Dessert = 'filter.php?c=Dessert'
+let Meat = 'filter.php?c=Lamb'
 
 // Alcohol
 let Alcoholic = 'filter.php?a=Alcoholic'
@@ -41,6 +50,18 @@ let champagneFlute = 'filter.php?g=Champagne_flute'
 // API URL's
 var foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Random}`
 var cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/${Random}`
+
+
+fetch(foodApiUrl).then(function (response) {
+  if (response.ok) {
+    response.json().then(function (data) {
+      displayMeals(data)
+        
+    });
+  } else { 
+    alert('Error: ' + response.statusText);
+  }
+});
 
 
 fetch(cocktailApiUrl).then(function (response) {
@@ -56,78 +77,6 @@ fetch(cocktailApiUrl).then(function (response) {
   }
 });
 
-
-fetch(foodApiUrl).then(function (response) {
-  if (response.ok) {
-    response.json().then(function (data) {
-      displayMeals(data)
-        
-    });
-  } else { 
-    alert('Error: ' + response.statusText);
-  }
-});
-
-
-
-function displayDrinks(instructions) {
-
-  clearDiv();
-
-  console.log(instructions)
-  
-  for(var j = 0; j < 8; j++){
-    var cardBodyDivEl = document.createElement("div");
-    var cardTitleEl = document.createElement("h5");
-    var colDivEl = document.createElement("div");
-    var cardDivEl = document.createElement("div");
-    var cardImg = document.createElement("img");
-    var btnEl = document.createElement("button");
-    var iconEl = document.createElement("i");
-    var linkEl = document.createElement("a")
-
-    colDivEl.setAttribute("class", "col");
-    cardDivEl.setAttribute("class", "card border border-0");
-    cardBodyDivEl.setAttribute("class", "card-body");
-    cardTitleEl.setAttribute("class", "card-title");
-
-    linkEl.setAttribute("data-value", instructions.drinks[j].idDrink);
-    linkEl.addEventListener("click", toMethod)
-    //Set data attribute of button to the unique ID of recipe
-    btnEl.setAttribute("data-value", instructions.drinks[j].idDrink);
-    //Add event listener and intial class of favorites button
-    btnEl.addEventListener("click", addToFavs);
-    iconEl.setAttribute("class", "bi bi-star");
-    cardImg.setAttribute("class", "img-fluid")
-
-    cardImg.src = instructions.drinks[j].strDrinkThumb;
-    cardTitleEl.textContent = instructions.drinks[j].strDrink;
-
-    
-    cardContainer.appendChild(colDivEl)
-    colDivEl.appendChild(cardDivEl)
-    cardDivEl.appendChild(linkEl)
-    linkEl.appendChild(cardImg)
-    cardDivEl.appendChild(cardBodyDivEl)
-    cardBodyDivEl.appendChild(cardTitleEl)
-    cardBodyDivEl.appendChild(btnEl)
-    btnEl.appendChild(iconEl)
-
-        //Add filled star to a new favorite via class 'bi-star-fill'
-        let favorites = []
-
-        let myFavourites = JSON.parse(localStorage.getItem('mySavedFavs'));
-        if (myFavourites !==null){
-            favorites = myFavourites;
-        }
-  
-        if (favorites.includes(instructions.drinks[j].idDrink)){
-          iconEl.setAttribute ("class", "bi-star-fill")
-        }
-
-
-  }
-}
 
 // 'displayMeals' creates recipe cards based on the current search value. The initial search value
 // is a random selection of 8 recipes. Each recipe card has an image, title, and favorite button.
@@ -197,15 +146,84 @@ function displayMeals(recipes) {
   }
 }
 
+
+function displayDrinks(instructions) {
+
+
+  console.log(instructions)
+  
+  for(var j = 0; j < 8; j++){
+    var cardBodyDivEl = document.createElement("div");
+    var cardTitleEl = document.createElement("h5");
+    var colDivEl = document.createElement("div");
+    var cardDivEl = document.createElement("div");
+    var cardImg = document.createElement("img");
+    var btnEl = document.createElement("button");
+    var iconEl = document.createElement("i");
+    var linkEl = document.createElement("a")
+
+    colDivEl.setAttribute("class", "col");
+    cardDivEl.setAttribute("class", "card border border-0");
+    cardBodyDivEl.setAttribute("class", "card-body");
+    cardTitleEl.setAttribute("class", "card-title");
+
+    linkEl.setAttribute("data-value", instructions.drinks[j].idDrink);
+    linkEl.addEventListener("click", toMethod)
+    
+    //Set data attribute of button to the unique ID of recipe
+    btnEl.setAttribute("data-id", instructions.drinks[j].idDrink);
+    btnEl.setAttribute("data-title", instructions.drinks[j].strDrink);
+    btnEl.setAttribute("data-image", instructions.drinks[j].strDrinkThumb);
+    
+    //Add event listener and intial class of favorites button
+    btnEl.addEventListener("click", addToFavs);
+    iconEl.setAttribute("class", "bi bi-star");
+    cardImg.setAttribute("class", "img-fluid")
+
+    cardImg.src = instructions.drinks[j].strDrinkThumb;
+    cardTitleEl.textContent = instructions.drinks[j].strDrink;
+
+    
+    cardContainer.appendChild(colDivEl)
+    colDivEl.appendChild(cardDivEl)
+    cardDivEl.appendChild(linkEl)
+    linkEl.appendChild(cardImg)
+    cardDivEl.appendChild(cardBodyDivEl)
+    cardBodyDivEl.appendChild(cardTitleEl)
+    cardBodyDivEl.appendChild(btnEl)
+    btnEl.appendChild(iconEl)
+
+        //Add filled star to a new favorite via class 'bi-star-fill'
+        let favorites = []
+
+        let myFavourites = JSON.parse(localStorage.getItem('mySavedFavs'));
+        if (myFavourites !==null){
+            favorites = myFavourites;
+        }
+  
+        if (favorites.includes(instructions.drinks[j].idDrink)){
+          iconEl.setAttribute ("class", "bi-star-fill")
+        }
+
+
+  }
+}
+
+
 // Add click listeners for the nav bar  refinement options and favourite button
 canadianFoodBtn.addEventListener ("click", onlyCanadianFood );
 frenchFoodBtn.addEventListener ("click", onlyFrenchFood );
 italianFoodBtn.addEventListener ("click", onlyItalianFood );
+britishFoodBtn.addEventListener ("click", onlyBritishFood );
+japaneseFoodBtn.addEventListener ("click", onlyJapaneseFood );
+americanFoodBtn.addEventListener ("click", onlyAmericanFood );
+
 
 chickenCatBtn.addEventListener ("click", onlyChickenFood );
 seafoodCatBtn.addEventListener ("click", onlySeafood  );
 pastaCatBtn.addEventListener ("click", onlyPastas);
 dessertCatBtn.addEventListener ("click", onlyDesserts);
+meatFoodBtn.addEventListener ("click", onlyMeats);
 
 alcoholicBtn.addEventListener ("click", onlyAlcohols);
 nonAlcoholicBtn.addEventListener ("click", noAlcohols);
@@ -236,6 +254,7 @@ function onlyCanadianFood(recipes) {
     // call display meals function
     console.log("recipes after event click:");
     console.log(recipes);
+    clearDiv();
     displayMeals(recipes);
 }
 
@@ -258,6 +277,7 @@ function onlyFrenchFood(recipes) {
     // call display meals function
     console.log("recipes after event click:");
     console.log(recipes);
+    clearDiv();
     displayMeals(recipes);
 }
 
@@ -280,8 +300,101 @@ function onlyItalianFood(recipes) {
     // call display meals function
     console.log("recipes after event click:");
     console.log(recipes);
+    clearDiv();
     displayMeals(recipes);
 }
+
+function onlyBritishFood(recipes) {
+
+  foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${British}`
+
+  fetch(foodApiUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          displayMeals(data)
+          console.log("data after event click:");
+          console.log(data);
+          
+        });
+      } else { 
+        alert('Error: ' + response.statusText);
+      }
+    });
+    // call display meals function
+    console.log("recipes after event click:");
+    console.log(recipes);
+    clearDiv();
+    displayMeals(recipes);
+}
+
+function onlyAmericanFood(recipes) {
+
+  foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${American}`
+
+  fetch(foodApiUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          displayMeals(data)
+          console.log("data after event click:");
+          console.log(data);
+          
+        });
+      } else { 
+        alert('Error: ' + response.statusText);
+      }
+    });
+    // call display meals function
+    console.log("recipes after event click:");
+    console.log(recipes);
+    clearDiv();
+    displayMeals(recipes);
+}
+function onlyJapaneseFood(recipes) {
+
+  foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Japanese}`
+
+  fetch(foodApiUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          displayMeals(data)
+          console.log("data after event click:");
+          console.log(data);
+          
+        });
+      } else { 
+        alert('Error: ' + response.statusText);
+      }
+    });
+    // call display meals function
+    console.log("recipes after event click:");
+    console.log(recipes);
+    clearDiv();
+    displayMeals(recipes);
+}
+
+function onlyMeats(recipes) {
+
+  foodApiUrl = `https://www.themealdb.com/api/json/v2/9973533/${Meat}`
+
+  fetch(foodApiUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          displayMeals(data)
+          console.log("data after event click:");
+          console.log(data);
+          
+        });
+      } else { 
+        alert('Error: ' + response.statusText);
+      }
+    });
+    // call display meals function
+    console.log("recipes after event click:");
+    console.log(recipes);
+    clearDiv();
+    displayMeals(recipes);
+}
+
 
 function onlyChickenFood(recipes) {
 
@@ -302,6 +415,7 @@ function onlyChickenFood(recipes) {
     // call display meals function
     console.log("recipes after event click:");
     console.log(recipes);
+    clearDiv();
     displayMeals(recipes);
 }
 
@@ -327,6 +441,7 @@ function onlySeafood (recipes) {
     // call display meals function
     console.log("recipes after event click:");
     console.log(recipes);
+    clearDiv();
     displayMeals(recipes);
 }
 
@@ -351,6 +466,7 @@ function onlyPastas (recipes) {
     // call display meals function
     console.log("recipes after event click:");
     console.log(recipes);
+    clearDiv();
     displayMeals(recipes);
 }
 
@@ -375,6 +491,7 @@ function onlyDesserts (recipes) {
     // call display meals function
     console.log("recipes after event click:");
     console.log(recipes);
+    clearDiv();
     displayMeals(recipes);
 }
 
@@ -396,6 +513,7 @@ function onlyAlcohols (instructions) {
     // call display drinks function
     console.log("Instructions after event click:");
     console.log(instructions);
+    clearDiv();
     displayDrinks(instructions);
 }
 
@@ -417,6 +535,7 @@ function noAlcohols (instructions) {
     // call display drinks function
     console.log("Instructions after event click:");
     console.log(instructions);
+    clearDiv();
     displayDrinks(instructions);
 }
 
@@ -438,6 +557,7 @@ function onlyCocktails (instructions) {
     // call display drinks function
     console.log("Instructions after event click:");
     console.log(instructions);
+    clearDiv();
     displayDrinks(instructions);
 }
 
@@ -459,6 +579,7 @@ function onlyOrdinaryDrinks (instructions) {
     // call display drinks function
     console.log("Instructions after event click:");
     console.log(instructions);
+    clearDiv();
     displayDrinks(instructions);
 }
 
