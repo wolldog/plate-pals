@@ -30,23 +30,17 @@ function displayMethod (){
 }
 
 function displayIngredients() {
-  
-  debugger
-  var carrot = document.getElementById("recipeIngredients")
-  var number = 1
-  var ingredient = `source.strIngredient${number}`
 
-  for (var i=0; i > 20; i++){
+   
+  document.getElementById("item-1").innerHTML = source.strIngredient1;
+  document.getElementById("item-2").innerHTML = source.strIngredient2;
+  document.getElementById("item-3").innerHTML = source.strIngredient3;
+  document.getElementById("item-4").innerHTML = source.strIngredient4;
+  document.getElementById("item-5").innerHTML = source.strIngredient5;
+  document.getElementById("item-6").innerHTML = source.strIngredient6;
+  document.getElementById("item-7").innerHTML = source.strIngredient7;
+  document.getElementById("item-8").innerHTML = source.strIngredient8;
 
-    var liEl = document.createElement('li')
-    console.log(ingredient)
-    liEl.textContent = ingredient
-    carrot.appendChild(liEl)
-    number++
-    
-  }
-
-  
 }
 
 
