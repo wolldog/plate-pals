@@ -12,6 +12,7 @@ fetch(methodApi).then(function (response) {
       response.json().then(function (data) {
         source = (data.meals[0]);
         displayMethod ();
+        displayIngredients();
         
       });
     } else { 
@@ -23,13 +24,34 @@ function displayMethod (){
   
   document.getElementById("recipeTitle").innerHTML = source.strMeal;
   document.getElementById("recipeImg").src = source.strMealThumb;
-  document.getElementById("recipeMethod").innerHTML = source.strIngredient1;
-  document.getElementById("recipeIngredients").innerHTML = source.strInstructions;
+  document.getElementById("recipeMethod").innerHTML = source.strInstructions;
+  
   console.log(source)
-
-
-
 }
+
+function displayIngredients() {
+  
+  debugger
+  var carrot = document.getElementById("recipeIngredients")
+  var number = 1
+  var ingredient = `source.strIngredient${number}`
+
+  for (var i=0; i > 20; i++){
+
+    var liEl = document.createElement('li')
+    console.log(ingredient)
+    liEl.textContent = ingredient
+    carrot.appendChild(liEl)
+    number++
+    
+  }
+
+  
+}
+
+
+
+
 
 TitleBtn.addEventListener("click", toMainPage);
 
