@@ -717,3 +717,100 @@ function displayFavorites() {
 function toMainPage() {
   document.location = ("./index.html");
 }
+
+//carousel
+const apiURL = "https://www.themealdb.com/api/json/v2/9973533/randomselection.php";
+
+setInterval(function() {
+  fetch(apiURL)
+    .then(response => response.json())
+    .then(data => {
+      
+      const meals = data.meals;
+
+      
+      const carouselInner = document.querySelector(".carousel-inner");
+      carouselInner.innerHTML = "";
+
+      // for Loop through meals
+      for (let i = 0; i < meals.length; i++) {
+      
+        const meal = meals[i];
+
+        // items for the carousel
+        const carouselItem = document.createElement("div");
+        carouselItem.classList.add("carousel-item");
+        if (i === 0) {
+          carouselItem.classList.add("active");
+        }
+
+        // Created image for the meals
+        const img = document.createElement("img");
+        img.classList.add("d-block", "w-100");
+        img.setAttribute("src", meal.strMealThumb);
+        img.setAttribute("alt", meal.strMeal);
+
+        
+        const mealInfo = document.createElement("div");
+        mealInfo.classList.add("meal-info");
+        mealInfo.innerHTML = `
+          <h2>${meal.strMeal}</h2>
+          <button id="view-recipe-btn" data-meal-id="${meal.idMeal}">View Full Recipe</button>
+        `;
+
+        
+        carouselItem.appendChild(img);
+        carouselItem.appendChild(mealInfo);
+        carouselInner.appendChild(carouselItem);
+      }
+
+      var apiURL = "https://www.themealdb.com/api/json/v2/9973533/";
+
+      var urlParams = new URLSearchParams(window.location.search);
+      var mealId = urlParams.get("mealId");
+
+      // Fetch meal by ID
+      fetch(`${apiURL}lookup.php?i=${mealId}`)
+        .then(response => response.json())
+        .then(data => {
+          var meal = data.meals[0];
+
+
+
+          
+          
+        });
+
+
+      // added event listener for the button
+      document.querySelectorAll("#view-recipe-btn").forEach(button => {
+        button.addEventListener("click", function() {
+          const mealId = this.getAttribute("data-meal-id");
+          const currentMeal = meals.find(meal => meal.idMeal === mealId);
+
+          // Open full recipe in carousel.html
+          openInNewPage(`./assets/html/method.html?mealId=${mealId}`);
+        });
+      });
+    });
+}, 5000);
+
+function openInNewPage(url) {
+  window.open(url);
+}
+
+function searchMeals(searchTerm) {
+  const endpoint = 'https://www.themealdb.com/api/json/v2/9973533/search.php';
+  const params = new URLSearchParams({ s: searchTerm });
+  const url = `${endpoint}?${params}`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      // process the API response data here
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+
