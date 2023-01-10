@@ -717,3 +717,55 @@ function displayFavorites() {
 function toMainPage() {
   document.location = ("./index.html");
 }
+
+
+
+setInterval(function() {
+  
+  fetch(foodApiUrl)
+    .then(response => response.json())
+    .then(data => {
+      
+      const meals = data.meals
+      const carouselInner = document.querySelector(".carousel-inner");
+      carouselInner.innerHTML = "";
+      
+
+      // for Loop through meals
+      for (let i = 0; i < meals.length; i++) {
+       const meal = meals[i];
+        // items for the carousel
+        const carouselItem = document.createElement("div");
+        carouselItem.classList.add("carousel-item");
+        
+        if (i === 0) {
+          carouselItem.classList.add("active");
+        }
+
+        // Created image for the meals
+        const img = document.createElement("img");
+
+      
+        
+        img.classList.add("d-block", "w-100");
+        img.setAttribute("src", meal.strMealThumb);
+        img.setAttribute("alt", meal.strMeal);
+        const mealInfo = document.createElement("div");
+        mealInfo.classList.add("meal-info");
+        mealInfo.innerHTML = `<h2>${meal.strMeal}</h2>`
+          ;
+
+        
+        carouselItem.appendChild(img);
+        carouselItem.appendChild(mealInfo);
+        carouselInner.appendChild(carouselItem);
+      };
+    
+    document.querySelectorAll("#view-recipe-btn").forEach(button => {
+    button.addEventListener("click", toMethod())
+    button.addEventListener("click", toMethod())
+
+    });
+});
+
+} ,10000);
